@@ -1,18 +1,21 @@
 package MariosPizzaBar.model;
 
 public class Pizza {
-    private String name;
-    private Size size;
+    //variabler til Pizza
     private int number;
+    private String name;
     private int price;
+    private Size size;
 
-    public Pizza(String name, Size size, int number, int price) {
-        this.name = name;
-        this.size = size;
+    //Constructor
+    public Pizza(int number, String name, int price, Size size) {
         this.number = number;
+        this.name = name;
         this.price = price;
+        this.size = size;
     }
 
+    //Getters
     public String getName() {
         return name;
     }
@@ -29,6 +32,7 @@ public class Pizza {
         return price;
     }
 
+    // Tostring metode
     @Override
     public String toString() {
         return getName() + "," + getSize() + "," + getNumber() + "," + getPrice();
