@@ -1,6 +1,7 @@
 package MariosPizzaBar.service;
 
 import MariosPizzaBar.model.*;
+import jdk.jfr.FlightRecorderListener;
 
 
 import java.io.*;
@@ -8,15 +9,21 @@ import java.util.ArrayList;
 
 public class FileHandler {
 
-    private static final String FILE_NAME = "src/MariosPizzaBar/pizzamenu.csv";
+    private static final String MENU = "src/MariosPizzaBar/pizzamenu.csv";
+    private static final String HISTORIK = "src/MariosPizzaBar/Historik.csv";
+    private static final String ORDERLILIST = "src/MariosPizzaBar/bestillingsliste.csv";
+    private static ArrayList<Order> pizzaOrder = new ArrayList<>();
+    private static ArrayList<Pizza> pizzaMenu = new ArrayList<>();
 
-    public ArrayList<Pizza> loadPizzaMenu() {
 
-        ArrayList<Pizza> pizza = new ArrayList<>();
+    public ArrayList<Pizza> getPizzas() {
+        return pizzas;
+    }
 
-        try (
-                BufferedReader reader =
-                        new BufferedReader(new FileReader(FILE_NAME))) {
+    public void loadPizzaMenu() {
+
+        try (BufferedReader reader =
+                        new BufferedReader(new FileReader(MENU))) {
 
             String line;
 
@@ -26,9 +33,10 @@ public class FileHandler {
 
                 int number = Integer.parseInt(parts[0]);
                 String name = parts[1];
-                double price = Double.parseDouble(parts[2]);
+                int price = Integer.parseInt(parts[2]);
+                Pizza pizza = new Pizza(number, name, price);
 
-
+                pizzaMenu.add(pizza);
             }
 
 
@@ -37,59 +45,61 @@ public class FileHandler {
             e.printStackTrace();
         }
 
-        return pizza;
+
     }
 
-    public void saveHistory(ArrayList<Pizza> pizza) {
+    public void addPizza(Pizza pizza) {
+        pizzaOrder.add(pizza);
+        writeToFile();
+    }
 
-        try (BufferedWriter writer =
-                     new BufferedWriter(new FileWriter("src/MariosPizzaBar/Historik.csv"))) {
+    public static void writeToFileOrderList() {
+        try {
+            FileWriter fileWriter = new FileWriter(ORDERLILIST);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            for (Pizza pizza : pizza) {
-
-                Pizza p = (Pizza) pizza;
-
-                writer.write("PET," +
-                        p.getNumber() + "," +
-                        p.get.Name() + "," +
-                        p.getPrice());
-
+            for (Pizza pizza : pizzaOrder) {
+                bufferedWriter.write(pizza.toString());
+                bufferedWriter.newLine();
             }
 
-            writer.newLine();
+            bufferedWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-    } catch(
-    IOException e)
-
-    {
-        e.printStackTrace();
     }
 
-    public void saveHistory(ArrayList<Pizza> pizza) {
+    public static void writeToFileHistory() {
+        try {
+            FileWriter fileWriter = new FileWriter(HISTORIK);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-        try (BufferedWriter writer =
-                     new BufferedWriter(new FileWriter("src/MariosPizzaBar/Historik.csv"))) {
-
-            for (Pizza pizza : pizza) {
-
-                Pizza p = (Pizza) pizza;
-
-                writer.write("PET," +
-                        p.getNumber() + "," +
-                        p.get.Name() + "," +
-                        p.getPrice());
-
+            for (Pizza pizza : pizzaOrder) {
+                bufferedWriter.write(pizza.toString());
+                bufferedWriter.newLine();
             }
 
-            writer.newLine();
+            bufferedWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-    } catch(
-    IOException e)
-
-    {
-        e.printStackTrace();
     }
+
+    public ArrayList<Order> removePizza(int number) {
+        for (int i = 0; i < pizzaOrder.size(); i++) {
+            if (number == pizzaOrder.get(i).getOrderNumber(); {
+                pizzaOrder.remove(i); //fjerner sang fra ArrayList
+                writeToFileOrderList();
+                //opdatere txt
+                return pizza;
+            }
+        }
+        return null;
+    }
+
 
 }
