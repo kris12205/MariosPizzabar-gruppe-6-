@@ -1,14 +1,19 @@
 package MariosPizzaBar.model;
 
+
+import java.sql.Timestamp;
+
 public class Order {
+    private static int orderCounter = 0; //static da den skal gå på tværs
     private int orderNumber;
-    private double time;
     private Pizza pizza;
+    private Timestamp orderTime;
 
     //Constuctor
-    public Order (int orderNumber, double time, Pizza pizza){
-        this.orderNumber = orderNumber;
-        this.time = time;
+    public Order (Pizza[] pizzas){
+        orderCounter++;
+        this.orderNumber = orderCounter;
+        this.orderTime = new Timestamp(System.currentTimeMillis());
         this.pizza = pizza;
     }
 
@@ -17,8 +22,8 @@ public class Order {
         return orderNumber;
     }
 
-    public double getTime() {
-        return time;
+    public Timestamp getTime() {
+        return orderTime;
     }
 
     public Pizza getPizza() {
@@ -26,7 +31,7 @@ public class Order {
     }
 
     public String toCSV() {
-        return orderNumber + "," + time + "," + "," + pizza;
+        return orderNumber + "," + orderTime + "," + pizza;
     }
 
 }
