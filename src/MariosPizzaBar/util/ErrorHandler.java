@@ -13,7 +13,7 @@ public class ErrorHandler {
             System.out.println(e.getMessage());
 
         } else if (e instanceof IOException) {
-            System.out.println("Fejl ved filen");
+            System.out.println("Fejl ved input/output");
             System.out.println(e.getMessage());
 
         } else if (e instanceof NullPointerException) {
@@ -25,11 +25,11 @@ public class ErrorHandler {
             System.out.println(e.getMessage());
 
         } else if (e instanceof FileWriteException) {
-            System.out.println("Fejl ved skrivning af filen");
+            System.out.println("Fejl ved skrivning af fil");
             System.out.println(e.getMessage());
 
         } else {
-            System.out.println("Unexpected error occurred");
+            System.out.println("Uventet fejl opstod");
             System.out.println(e.getMessage());
         }
     }
