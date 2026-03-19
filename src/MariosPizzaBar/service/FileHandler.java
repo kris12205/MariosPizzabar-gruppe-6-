@@ -11,7 +11,7 @@ public class FileHandler {
 
     private static final String MENU = "src/MariosPizzaBar/pizzamenu.csv";
     private static final String HISTORIK = "src/MariosPizzaBar/Historik.csv";
-    private static final String ORDERLILIST = "src/MariosPizzaBar/bestillingsliste.csv";
+    private static final String ORDERLIST = "src/MariosPizzaBar/bestillingsliste.csv";
     private static ArrayList<Order> pizzaOrder = new ArrayList<>();
     private static ArrayList<Pizza> pizzaMenu = new ArrayList<>();
 
