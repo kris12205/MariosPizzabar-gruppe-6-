@@ -32,32 +32,36 @@ public class PizzabarUI {
         boolean running = true;
 
         while (running) {
-            int input = scanner.nextInt();
-            fileHandler.loadPizzaMenu();
+            try {
+                int input = Integer.parseInt(scanner.nextLine());
+                fileHandler.loadPizzaMenu();
 
-            switch (input) {
-                case 1:
-                    showMenu();
-                    break;
-                case 2:
-                    showOrders();
-                    break;
-                case 3:
-                    addOrder(scanner);
-                    break;
-                case 4:
-                    concludeOrder();
-                    break;
-                case 5:
-                    showHistory();
-                    break;
-                case 6:
-                    scanner.close();
-                    running = false;
-                    break;
-                default:
-                    System.out.println(wrongInputMessage);
+                switch (input) {
+                    case 1:
+                        showMenu();
+                        break;
+                    case 2:
+                        showOrders();
+                        break;
+                    case 3:
+                        addOrder(scanner);
+                        break;
+                    case 4:
+                        concludeOrder();
+                        break;
+                    case 5:
+                        showHistory();
+                        break;
+                    case 6:
+                        scanner.close();
+                        running = false;
+                        break;
+                    default:
+                        System.out.println(wrongInputMessage);
 
+                }
+            } catch (NumberFormatException e){
+                System.out.println(wrongInputMessage);
             }
         }
     }
