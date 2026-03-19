@@ -16,6 +16,12 @@ public class FileHandler {
         return pizzaMenu;
     }
 
+    //Tilføje en ordre til ArrayList og CSV filen
+    public void addOrder(Order order) {
+        pizzaOrder.add(order);
+        writeToFileOrderList();
+    }
+
     public void loadPizzaMenu() {
 
         try (BufferedReader reader =

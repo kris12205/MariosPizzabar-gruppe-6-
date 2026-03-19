@@ -94,8 +94,7 @@ public class PizzabarUI {
 //            default: System.out.println("Forkert input. Prøv igen.");
 //        }
 
-        orders.add(new Order(newOrder));
-        fileHandler.writeToFileOrderList();
+        fileHandler.addOrder(new Order(newOrder));
 
     }
 
