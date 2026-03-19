@@ -5,23 +5,17 @@ public class Pizza {
     private int number;
     private String name;
     private int price;
-    private Size size;
 
     //Constructor
-    public Pizza(int number, String name, int price, Size size) {
+    public Pizza(int number, String name, int price) {
         this.number = number;
         this.name = name;
         this.price = price;
-        this.size = size;
     }
 
     //Getters
     public String getName() {
         return name;
-    }
-
-    public Size getSize() {
-        return size;
     }
 
     public int getNumber() {
@@ -35,7 +29,7 @@ public class Pizza {
     // Tostring metode
     @Override
     public String toString() {
-        return getName() + "," + getSize() + "," + getNumber() + "," + getPrice();
+        return getName() + "," + "," + getNumber() + "," + getPrice();
     }
 
 }
