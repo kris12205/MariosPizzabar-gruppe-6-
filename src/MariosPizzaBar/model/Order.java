@@ -10,7 +10,7 @@ public class Order {
     private Timestamp orderTime;
 
     //Constuctor
-    public Order (Pizza[] pizzas){
+    public Order (Pizza pizza){
         orderCounter++;
         this.orderNumber = orderCounter;
         this.orderTime = new Timestamp(System.currentTimeMillis());

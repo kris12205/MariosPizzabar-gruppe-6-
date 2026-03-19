@@ -2,6 +2,7 @@ package MariosPizzaBar.service;
 import MariosPizzaBar.model.*;
 import java.io.*;
 import java.util.ArrayList;
+
 public class FileHandler {
 
     private static final String MENU = "src/MariosPizzaBar/pizzamenu.csv";
@@ -43,6 +44,10 @@ public class FileHandler {
 
     }
 
+    public Pizza findPizza(int pizzaNumber){
+        return pizzaMenu.get(pizzaNumber);
+    }
+
     public void showHistory() {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(HISTORIK))) {
@@ -65,7 +70,7 @@ public class FileHandler {
 
     }
 
-    public static void writeToFileOrderList() {
+    public void writeToFileOrderList() {
         try {
             FileWriter fileWriter = new FileWriter(ORDERLIST);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);

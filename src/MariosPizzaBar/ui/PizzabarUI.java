@@ -27,24 +27,31 @@ public class PizzabarUI {
         System.out.println("5. Vis historik");
 
         int input = scanner.nextInt();
+        fileHandler.loadPizzaMenu();
 
         switch (input){
             case 1:
                 showMenu();
+                break;
             case 2:
+                OrderSorter.sortByTime(orders);
                 showOrders();
+                break;
             case 3:
                 addOrder(scanner);
+                break;
             case 4:
                 concludeOrder();
+                break;
             case 5:
                 showHistory();
+                break;
         }
     }
 
     // skal printe menukortet fra pizzamenu.csv
     public static void showMenu(){
-        fileHandler.loadPizzaMenu();
+        System.out.print(fileHandler.getPizzas());
     }
 
     // skal printe orders
@@ -56,8 +63,6 @@ public class PizzabarUI {
 
         } else {
 
-            OrderSorter.sortByTime(orders);
-
             for (Order order : orders) {
                 System.out.println(order);
 
@@ -68,33 +73,29 @@ public class PizzabarUI {
     // tilføjer order til orders
     private static void addOrder(Scanner scanner){
 
-        System.out.println("Ordrenummer?");
-        int orderNumber = scanner.nextInt();
-
-        System.out.println("Tidspunkt?");
-        int pizzaTime = scanner.nextInt();
-
         System.out.println("Pizzanummer?");
         int pizzaNumber = scanner.nextInt();
-        // skal kalde en metode i FileHandler der opretter en pizza baseret på pizzaNumber
-        //Pizza pizza = fileHandler.readMenu(pizzaNumber);
+        Pizza newOrder = fileHandler.findPizza(pizzaNumber);
+        scanner.nextLine();
 
-        System.out.println("Størrelse?");
-        String answer = scanner.nextLine();
-        if (Objects.equals(answer.toLowerCase(), "normal")){
-            Size size = NORMAL;
-        } else if (Objects.equals(answer.toLowerCase(), "kids") ||
-                    Objects.equals(answer.toLowerCase(), "kid") ||
-                    Objects.equals(answer.toLowerCase(), "small")){
-            Size size = KIDS;
-        } else if (Objects.equals(answer.toLowerCase(), "family") ||
-                    Objects.equals(answer.toLowerCase(), "large")){
-            Size size = FAMILY;
-        } else {
-            System.out.println("Forkert input. Prøv igen.");
-        }
+//        System.out.println("Størrelse?");
+//        String answer = scanner.nextLine();
+//
+//        switch (answer.toLowerCase()) {
+//            case "normal": {
+//                Size size = NORMAL;
+//            }
+//            case "kids", "kid", "small": {
+//                Size size = KIDS;
+//            }
+//            case "family", "large": {
+//                Size size = FAMILY;
+//            }
+//            default: System.out.println("Forkert input. Prøv igen.");
+//        }
 
-        //orders.add(new Order(orderNumber,pizzaTime,pizza));
+        orders.add(new Order(newOrder));
+        fileHandler.writeToFileOrderList();
 
     }
 
