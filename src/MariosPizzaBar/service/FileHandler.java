@@ -1,6 +1,7 @@
 package MariosPizzaBar.service;
 import MariosPizzaBar.model.*;
 import java.io.*;
+import java.util.AbstractList;
 import java.util.ArrayList;
 
 public class FileHandler {
@@ -47,8 +48,40 @@ public class FileHandler {
             e.printStackTrace();
         }
 
+    }
+
+
+    public ArrayList<Order> loadOrderList() {
+
+        try (BufferedReader reader =
+                     new BufferedReader(new FileReader(ORDERLIST))) {
+
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+
+                int number = Integer.parseInt(parts[0]);
+                String name = parts[1];
+                int price = Integer.parseInt(parts[2]);
+                Pizza pizza = new Pizza(number, name, price);
+                Order order = new Order(pizza);
+
+                pizzaOrder.add(order);
+            }
+
+
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
+
+        return pizzaOrder;
+
 
     }
+
+
 
     public Pizza findPizza(int pizzaNumber){
         return pizzaMenu.get(pizzaNumber);

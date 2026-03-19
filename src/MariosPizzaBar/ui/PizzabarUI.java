@@ -36,7 +36,6 @@ public class PizzabarUI {
                 showMenu();
                 break;
             case 2:
-                OrderSorter.sortByTime(orders);
                 showOrders();
                 break;
             case 3:
@@ -59,14 +58,16 @@ public class PizzabarUI {
     // skal printe orders
     public static void showOrders(){
 
+        ArrayList<Order> orderList = fileHandler.loadOrderList();
+        OrderSorter.sortByTime(orderList);
 
-        if (orders.isEmpty()) {
+        if (orderList.isEmpty()) {
 
             System.out.println("Ordrelisten er tom.");
 
         } else {
 
-            for (Order order : orders) {
+            for (Order order : orderList) {
                 System.out.println(order);
 
             }
