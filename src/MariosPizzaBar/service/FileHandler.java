@@ -1,12 +1,7 @@
 package MariosPizzaBar.service;
-
 import MariosPizzaBar.model.*;
-import jdk.jfr.FlightRecorderListener;
-
-
 import java.io.*;
 import java.util.ArrayList;
-
 public class FileHandler {
 
     private static final String MENU = "src/MariosPizzaBar/pizzamenu.csv";
@@ -17,7 +12,7 @@ public class FileHandler {
 
 
     public ArrayList<Pizza> getPizzas() {
-        return pizzas;
+        return pizzaMenu;
     }
 
     public void loadPizzaMenu() {
@@ -48,18 +43,35 @@ public class FileHandler {
 
     }
 
-    public void addPizza(Pizza pizza) {
-        pizzaOrder.add(pizza);
-        writeToFile();
+    public void showHistory() {
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(HISTORIK))) {
+
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+
+            }
+            reader.close();
+
+
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
+        //Måske udregne statistikken her?
+
+
     }
 
     public static void writeToFileOrderList() {
         try {
-            FileWriter fileWriter = new FileWriter(ORDERLILIST);
+            FileWriter fileWriter = new FileWriter(ORDERLIST);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            for (Pizza pizza : pizzaOrder) {
-                bufferedWriter.write(pizza.toString());
+            for (Order order : pizzaOrder) {
+                bufferedWriter.write(order.toCSV());
                 bufferedWriter.newLine();
             }
 
@@ -71,15 +83,14 @@ public class FileHandler {
 
     }
 
-    public static void writeToFileHistory() {
+    public static void writeToFileHistory(Order order) {
         try {
             FileWriter fileWriter = new FileWriter(HISTORIK);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            for (Pizza pizza : pizzaOrder) {
-                bufferedWriter.write(pizza.toString());
-                bufferedWriter.newLine();
-            }
+            bufferedWriter.write(order.toCSV());
+            bufferedWriter.newLine();
+
 
             bufferedWriter.close();
 
@@ -89,16 +100,17 @@ public class FileHandler {
 
     }
 
-    public ArrayList<Order> removePizza(int number) {
+    public void removePizza(int number) {
         for (int i = 0; i < pizzaOrder.size(); i++) {
-            if (number == pizzaOrder.get(i).getOrderNumber(); {
-                pizzaOrder.remove(i); //fjerner sang fra ArrayList
+            if (number == pizzaOrder.get(i).getOrderNumber()) {
+                writeToFileHistory(pizzaOrder.get(i));
+                pizzaOrder.remove(i);
                 writeToFileOrderList();
-                //opdatere txt
-                return pizza;
+
+
             }
         }
-        return null;
+
     }
 
 
