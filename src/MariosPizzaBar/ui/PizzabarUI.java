@@ -10,53 +10,65 @@ import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
-
 import static MariosPizzaBar.model.Size.*;
 
 public class PizzabarUI {
     private static Scanner scanner = new Scanner(System.in);
     private static ArrayList<Order> orders = new ArrayList<>();
     private static FileHandler fileHandler = new FileHandler();
+    private static String wrongInputMessage = "Forkert input. Taste venligst et tal mellem 1-6.";
 
     // skal kalde de andre metoder
-    public static void start(){
+    public static void start() {
         System.out.println("Velkommen til Marios PizzaBar System! Vælg en mulighed " +
                 "ved at taste et tal fra 1-5");
-        System.out.println("1. Vis menkort");
+        System.out.println("1. Vis menukortet");
         System.out.println("2. Vis ordreliste");
         System.out.println("3. Tilføj ordre");
         System.out.println("4. Færdiggør ordre");
         System.out.println("5. Vis historik");
+        System.out.println("6. Luk programmet");
 
-        int input = scanner.nextInt();
-        fileHandler.loadPizzaMenu();
+        boolean running = true;
 
-        switch (input){
-            case 1:
-                showMenu();
-                break;
-            case 2:
-                showOrders();
-                break;
-            case 3:
-                addOrder(scanner);
-                break;
-            case 4:
-                concludeOrder();
-                break;
-            case 5:
-                showHistory();
-                break;
+        while (running) {
+            int input = scanner.nextInt();
+            fileHandler.loadPizzaMenu();
+
+            switch (input) {
+                case 1:
+                    showMenu();
+                    break;
+                case 2:
+                    showOrders();
+                    break;
+                case 3:
+                    addOrder(scanner);
+                    break;
+                case 4:
+                    concludeOrder();
+                    break;
+                case 5:
+                    showHistory();
+                    break;
+                case 6:
+                    scanner.close();
+                    running = false;
+                    break;
+                default:
+                    System.out.println(wrongInputMessage);
+
+            }
         }
     }
 
     // skal printe menukortet fra pizzamenu.csv
-    public static void showMenu(){
+    public static void showMenu() {
         System.out.print(fileHandler.getPizzas());
     }
 
     // skal printe orders
-    public static void showOrders(){
+    public static void showOrders() {
 
         ArrayList<Order> orderList = fileHandler.loadOrderList();
         OrderSorter.sortByTime(orderList);
@@ -75,7 +87,7 @@ public class PizzabarUI {
     }
 
     // tilføjer order til orders
-    private static void addOrder(Scanner scanner){
+    private static void addOrder(Scanner scanner) {
 
         System.out.println("Pizzanummer?");
         int pizzaNumber = scanner.nextInt();
@@ -103,7 +115,7 @@ public class PizzabarUI {
     }
 
     // fjerner order fra orders og tilføjer til Historik.csv
-    private static void concludeOrder(){
+    private static void concludeOrder() {
         showOrders(); // printer ordreliste som referencepunkt
 
         System.out.println("Hvilke order vil du færdiggøre?");
@@ -111,11 +123,11 @@ public class PizzabarUI {
         fileHandler.removePizza(orderNumber);
 
         // skal kalde metode i FileHandler der tilføjer order til historik.csv og fjerne fra ArrayList
-       // fileHandler.concludeOrder(orderNumber);
+        // fileHandler.concludeOrder(orderNumber);
     }
 
     // skal læse og printe historik.csv
-    private static void showHistory(){
+    private static void showHistory() {
         // fileHandler.showHistory();
     }
 }
