@@ -5,6 +5,8 @@ import MariosPizzaBar.model.Pizza;
 import MariosPizzaBar.model.Size;
 import MariosPizzaBar.service.FileHandler;
 import MariosPizzaBar.util.OrderSorter;
+
+import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -57,6 +59,7 @@ public class PizzabarUI {
     // skal printe orders
     public static void showOrders(){
 
+
         if (orders.isEmpty()) {
 
             System.out.println("Ordrelisten er tom.");
@@ -104,6 +107,7 @@ public class PizzabarUI {
 
         System.out.println("Hvilke order vil du færdiggøre?");
         int orderNumber = scanner.nextInt();
+        fileHandler.removePizza(orderNumber);
 
         // skal kalde metode i FileHandler der tilføjer order til historik.csv og fjerne fra ArrayList
        // fileHandler.concludeOrder(orderNumber);
