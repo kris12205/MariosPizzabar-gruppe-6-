@@ -29,7 +29,7 @@ public class Pizza {
     // Tostring metode
     @Override
     public String toString() {
-        return "\t" + getNumber() + "  " + getName() + "  " + getPrice() + " kr\n";
+        return "\t" + number + "," + name + "," + price + " dkk.\n";
     }
 
 }
