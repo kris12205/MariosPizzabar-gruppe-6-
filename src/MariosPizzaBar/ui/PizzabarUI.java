@@ -28,7 +28,7 @@ public class PizzabarUI {
         //Indlæser Pizza menuen
         fileHandler.loadPizzaMenu();
         //Indlæser bestillingslisten
-        fileHandler.loadOrderList();
+        orders = fileHandler.loadOrderList();
 
         while (running) {
             System.out.println("Vælg en mulighed ved at taste et tal fra 1-5\n" +
@@ -59,7 +59,7 @@ public class PizzabarUI {
                         running = false;
                         break;
                     default:
-                        System.out.println(wrongInputMessage);
+                        System.out.println("fejl");
 
                 }
             } catch (NumberFormatException e){
@@ -77,17 +77,18 @@ public class PizzabarUI {
     public static void showOrders() {
         String allOrders = "";
 
-        ArrayList<Order> orderList = fileHandler.loadOrderList();
-        OrderSorter.sortByTime(orderList);
+        // ArrayList<Order> orderList = fileHandler.loadOrderList();
+
+        OrderSorter.sortByTime(orders);
 
 
-        if (orderList.isEmpty()) {
+        if (orders.isEmpty()) {
 
             System.out.println("Ordrelisten er tom.");
 
         } else {
 
-            for (Order order : orderList) {
+            for (Order order : orders) {
                 allOrders = allOrders.concat(order.toCSV() + "\n");
 
             }

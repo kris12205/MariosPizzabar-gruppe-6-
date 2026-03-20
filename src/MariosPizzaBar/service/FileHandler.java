@@ -74,6 +74,7 @@ public class FileHandler {
         } catch (
                 IOException e) {
             e.printStackTrace();
+        } catch (ArrayIndexOutOfBoundsException e){
         }
 
         return pizzaOrder;
