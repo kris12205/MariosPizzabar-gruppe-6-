@@ -13,11 +13,9 @@ public class EmployeeCustomer extends Customer{
 
     //Denne kunde får 20% rabat på alle pizzaer
     @Override
-    public void discount(double price) {
-        System.out.println("Rabat: 20%");
+    public String discount(double price) {
         double savings = price * 0.20;
         double finalPrice = price - savings;
-        System.out.println(finalPrice);
-
+        return "Koster: " + price +"\nRabat: 20%\nPris: " + finalPrice;
     }
 }

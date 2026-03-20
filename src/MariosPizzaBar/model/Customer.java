@@ -17,6 +17,6 @@ public abstract class Customer {
     //Abstract method
     public abstract String getType();
 
-    public abstract void discount(double price);
+    public abstract String discount(double price);
 
 }

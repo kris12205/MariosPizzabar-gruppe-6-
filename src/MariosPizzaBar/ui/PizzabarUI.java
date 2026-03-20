@@ -5,6 +5,7 @@ import MariosPizzaBar.model.Pizza;
 import MariosPizzaBar.model.Size;
 import MariosPizzaBar.service.FileHandler;
 import MariosPizzaBar.util.OrderSorter;
+import MariosPizzaBar.model.*;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
@@ -20,21 +21,21 @@ public class PizzabarUI {
 
     // skal kalde de andre metoder
     public static void start() {
-        System.out.println("Velkommen til Marios PizzaBar System! Vælg en mulighed " +
-                "ved at taste et tal fra 1-5");
-        System.out.println("1. Vis menukortet");
-        System.out.println("2. Vis ordreliste");
-        System.out.println("3. Tilføj ordre");
-        System.out.println("4. Færdiggør ordre");
-        System.out.println("5. Vis historik");
-        System.out.println("6. Luk programmet");
+        System.out.println("Velkommen til Marios PizzaBar System!");
 
         boolean running = true;
 
+        //Indlæser Pizza menuen
+        fileHandler.loadPizzaMenu();
+        //Indlæser bestillingslisten
+        fileHandler.loadOrderList();
+
         while (running) {
+            System.out.println("Vælg en mulighed ved at taste et tal fra 1-5\n" +
+                    "1. Vis menukortet\n2. Vis ordreliste\n3. Tilføj ordre\n4. Færdiggør ordre" +
+                    "\n5. Vis historik\n6. Luk programmet");
             try {
-                int input = Integer.parseInt(scanner.nextLine());
-                fileHandler.loadPizzaMenu();
+                int input = scanner.nextInt();
 
                 switch (input) {
                     case 1:
@@ -73,6 +74,7 @@ public class PizzabarUI {
 
     // skal printe orders
     public static void showOrders() {
+        String allOrders = "";
 
         ArrayList<Order> orderList = fileHandler.loadOrderList();
         OrderSorter.sortByTime(orderList);
@@ -84,9 +86,10 @@ public class PizzabarUI {
         } else {
 
             for (Order order : orderList) {
-                System.out.println(order);
+                allOrders = allOrders.concat(order.toCSV() + "\n");
 
             }
+            System.out.println(allOrders);
         }
     }
 
@@ -115,6 +118,34 @@ public class PizzabarUI {
 //        }
 
         fileHandler.addOrder(new Order(newOrder));
+        addCustomer(newOrder);
+
+    }
+
+    public static void addCustomer(Pizza pizza){
+
+        System.out.println("Hvilken slags kunde bestiller?\n1. Normal \n2. VIP\n3. Medarbejder");
+        int input = scanner.nextInt();
+        System.out.print("Indtast kundenummer: ");
+        int customerNumber = scanner.nextInt();
+
+        //Udregner pris
+        switch (input) {
+            case 1:
+                NormalCustomer nc = new NormalCustomer(customerNumber);
+                System.out.println(nc.discount(pizza.getPrice()));
+                break;
+            case 2:
+                VIPCustomer vip = new VIPCustomer(customerNumber);
+                System.out.println(vip.discount(pizza.getPrice()));
+                break;
+            case 3:
+                EmployeeCustomer ec = new EmployeeCustomer(customerNumber);
+                System.out.println(ec.discount(pizza.getPrice()));
+                break;
+            default:
+                System.out.println("Ukendt input.");
+        }
 
     }
 

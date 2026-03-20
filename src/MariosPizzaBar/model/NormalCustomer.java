@@ -13,7 +13,7 @@ public class NormalCustomer extends Customer{
 
     //Denne kunde får ingen rabat og betaler fuldpris
     @Override
-    public void discount(double price) {
-        System.out.println("Rabat: 0%");
+    public String discount(double price) {
+        return "Koster: " + price +"\nRabat: 0%\nPris: " + price;
     }
 }
