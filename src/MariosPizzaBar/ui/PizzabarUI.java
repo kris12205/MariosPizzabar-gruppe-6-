@@ -42,11 +42,11 @@ public class PizzabarUI {
                         showMenu();
                         break;
                     case 2:
-                        System.out.println("Test");
                         showOrders();
                         break;
                     case 3:
                         addOrder(scanner);
+                        scanner.nextLine();
                         break;
                     case 4:
                         concludeOrder();
@@ -76,9 +76,6 @@ public class PizzabarUI {
     // skal printe orders
     public static void showOrders() {
         String allOrders = "";
-
-        System.out.println("showOrders påbegyndt");
-
 
         ArrayList<Order> orderList = fileHandler.loadOrderList();
         OrderSorter.sortByTime(orderList);
