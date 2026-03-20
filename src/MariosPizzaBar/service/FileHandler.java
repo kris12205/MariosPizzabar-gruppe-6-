@@ -61,9 +61,9 @@ public class FileHandler {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
 
-                int number = Integer.parseInt(parts[0]);
-                String name = parts[1];
-                int price = Integer.parseInt(parts[2]);
+                int number = Integer.parseInt(parts[2]);
+                String name = parts[3];
+                int price = Integer.parseInt(parts[4]);
                 Pizza pizza = new Pizza(number, name, price);
                 Order order = new Order(pizza);
 
@@ -145,11 +145,14 @@ public class FileHandler {
     }
 
     public void removePizza(int number) {
+        pizzaOrder.clear();                             //tilføjet af Dan, sletter listen fra memory
+        loadOrderList();                                    //tilføjet af Dan, læser CSV fil
         for (int i = 0; i < pizzaOrder.size(); i++) {
-            if (number == pizzaOrder.get(i).getOrderNumber()) {
+            if (number == pizzaOrder.get(i).getPizza().getNumber()) { //rettet af Dan
                 writeToFileHistory(pizzaOrder.get(i));
                 pizzaOrder.remove(i);
                 writeToFileOrderList();
+                break;
 
 
             }
