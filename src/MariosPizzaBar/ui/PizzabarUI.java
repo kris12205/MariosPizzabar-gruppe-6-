@@ -17,7 +17,7 @@ public class PizzabarUI {
     private static Scanner scanner = new Scanner(System.in);
     private static ArrayList<Order> orders = new ArrayList<>();
     private static FileHandler fileHandler = new FileHandler();
-    private static String wrongInputMessage = "Forkert input. Taste venligst et tal mellem 1-6.";
+    private static String wrongInputMessage = "Forkert input. Tast venligst et tal mellem 1-6.";
 
     // skal kalde de andre metoder
     public static void start() {
@@ -35,13 +35,14 @@ public class PizzabarUI {
                     "1. Vis menukortet\n2. Vis ordreliste\n3. Tilføj ordre\n4. Færdiggør ordre" +
                     "\n5. Vis historik\n6. Luk programmet");
             try {
-                int input = scanner.nextInt();
+                int input = Integer.parseInt(scanner.nextLine());
 
                 switch (input) {
                     case 1:
                         showMenu();
                         break;
                     case 2:
+                        System.out.println("Test");
                         showOrders();
                         break;
                     case 3:
@@ -76,8 +77,12 @@ public class PizzabarUI {
     public static void showOrders() {
         String allOrders = "";
 
+        System.out.println("showOrders påbegyndt");
+
+
         ArrayList<Order> orderList = fileHandler.loadOrderList();
         OrderSorter.sortByTime(orderList);
+
 
         if (orderList.isEmpty()) {
 
