@@ -60,6 +60,7 @@ public class PizzabarUI {
                         showHistory();
                         break;
                     case 6:
+                        System.out.print("Den mest populære pizza er: ");
                         System.out.println(Stats(fileHandler.getPizzaHistory()));
                         break;
                     case 7:
