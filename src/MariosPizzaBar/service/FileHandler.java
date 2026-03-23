@@ -11,6 +11,7 @@ public class FileHandler {
     private static final String ORDERLIST = "src/MariosPizzaBar/bestillingsliste.csv";
     private static ArrayList<Order> pizzaOrder = new ArrayList<>();
     private static ArrayList<Pizza> pizzaMenu = new ArrayList<>();
+    private static ArrayList<Order> pizzaHistory = new ArrayList<>();
 
 
     public ArrayList<Pizza> getPizzas() {
@@ -83,11 +84,12 @@ public class FileHandler {
     }
 
 
-
+    //Går igennem pizza menuen og returner en pizza, som står på det givet index nummer
     public Pizza findPizza(int pizzaNumber){
         return pizzaMenu.get(pizzaNumber);
     }
 
+    //Læser historik CSV filen og printer den
     public void showHistory() {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(HISTORIK))) {
@@ -110,6 +112,7 @@ public class FileHandler {
 
     }
 
+    //Går igennem ArrayListen af bestillinger og skriver dem til bestillings CSV filen
     public void writeToFileOrderList() {
         try {
             FileWriter fileWriter = new FileWriter(ORDERLIST);
@@ -128,14 +131,16 @@ public class FileHandler {
 
     }
 
-    public static void writeToFileHistory(Order order) {
+    //Går igennem historik ArrayListen og skriver den til historik CSV filen
+    public static void writeToFileHistory() { //Har fjernet at metoden tager imod en ordre
         try {
             FileWriter fileWriter = new FileWriter(HISTORIK);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            bufferedWriter.write(order.toCSV());
-            bufferedWriter.newLine();
-
+            for (Order o : pizzaHistory) {
+                bufferedWriter.write(o.toCSV());
+                bufferedWriter.newLine();
+            }
 
             bufferedWriter.close();
 
@@ -145,20 +150,18 @@ public class FileHandler {
 
     }
 
-    public void removePizza(int number) {
-        pizzaOrder.clear();                             //tilføjet af Dan, sletter listen fra memory
-        loadOrderList();                                    //tilføjet af Dan, læser CSV fil
+    //Fjerner en ordre fra bestillingslisten, og skriver den til historikken
+    public ArrayList<Order> removeOrder(int number) {
         for (int i = 0; i < pizzaOrder.size(); i++) {
-            if (number == pizzaOrder.get(i).getPizza().getNumber()) { //rettet af Dan
-                writeToFileHistory(pizzaOrder.get(i));
-                pizzaOrder.remove(i);
-                writeToFileOrderList();
-                break;
-
-
+            if(number == pizzaOrder.get(i).getOrderNumber()) {
+                pizzaHistory.add(pizzaOrder.get(i)); //Tilføjer ordren til historik ArrayList
+                writeToFileHistory(); //Skriver historik ArrayListen til CSV filen
+                pizzaOrder.remove(i); //Fjerner ordren fra bestilling ArrayListen
+                writeToFileOrderList(); //Opdatere bestillings CSV filen.
+                return pizzaOrder;
             }
         }
-
+        return null;
     }
 
 

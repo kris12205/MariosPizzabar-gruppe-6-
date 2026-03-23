@@ -50,6 +50,7 @@ public class PizzabarUI {
                         break;
                     case 4:
                         concludeOrder();
+                        scanner.nextLine();
                         break;
                     case 5:
                         showHistory();
@@ -158,7 +159,13 @@ public class PizzabarUI {
 
         System.out.println("Hvilke order vil du færdiggøre?");
         int orderNumber = scanner.nextInt();
-        fileHandler.removePizza(orderNumber);
+        ArrayList<Order> updatedOrderList = fileHandler.removeOrder(orderNumber);
+        if (updatedOrderList == null) {
+            System.out.println("The song was not found on the list :(");
+        } else {
+            System.out.println("Ordre nr." + orderNumber + " er færdiggjort.");
+        }
+        //fileHandler.removePizza(orderNumber);
 
         // skal kalde metode i FileHandler der tilføjer order til historik.csv og fjerne fra ArrayList
         // fileHandler.concludeOrder(orderNumber);
@@ -166,6 +173,6 @@ public class PizzabarUI {
 
     // skal læse og printe historik.csv
     private static void showHistory() {
-        // fileHandler.showHistory();
+        fileHandler.showHistory();
     }
 }
