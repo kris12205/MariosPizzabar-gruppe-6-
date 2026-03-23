@@ -22,7 +22,9 @@ public class PizzabarUI {
 
     // skal kalde de andre metoder
     public static void start() {
-        System.out.println("Velkommen til Marios PizzaBar System!");
+        System.out.println("Velkommen til Marios PizzaBar System!\n");
+
+
 
         boolean running = true;
 
@@ -30,9 +32,10 @@ public class PizzabarUI {
         fileHandler.loadPizzaMenu();
         //Indlæser bestillingslisten
         orders = fileHandler.loadOrderList();
+        showOrders();
 
         while (running) {
-            System.out.println("Vælg en mulighed ved at taste et tal fra 1-5\n" +
+            System.out.println("\nVælg en mulighed ved at taste et tal fra 1-5\n" +
                     "1. Vis menukortet\n2. Vis ordreliste\n3. Tilføj ordre\n4. Færdiggør ordre" +
                     "\n5. Vis historik\n6. vis statistik\n7. Luk programmet");
             try {
@@ -75,7 +78,9 @@ public class PizzabarUI {
 
     // skal printe menukortet fra pizzamenu.csv
     public static void showMenu() {
-        System.out.print(fileHandler.getPizzas());
+        for (Pizza pizza : fileHandler.getPizzas()) {
+            System.out.print(pizza + "\n");
+        }
     }
 
     // skal printe orders
