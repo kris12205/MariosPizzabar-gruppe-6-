@@ -161,7 +161,7 @@ public class PizzabarUI {
         int orderNumber = scanner.nextInt();
         ArrayList<Order> updatedOrderList = fileHandler.removeOrder(orderNumber);
         if (updatedOrderList == null) {
-            System.out.println("The song was not found on the list :(");
+            System.out.println("Denne ordre eksisterer ikke.");
         } else {
             System.out.println("Ordre nr." + orderNumber + " er færdiggjort.");
         }
