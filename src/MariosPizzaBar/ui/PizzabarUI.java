@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 import static MariosPizzaBar.model.Size.*;
+import static MariosPizzaBar.service.Stats.Stats;
 
 public class PizzabarUI {
     private static Scanner scanner = new Scanner(System.in);
@@ -33,7 +34,7 @@ public class PizzabarUI {
         while (running) {
             System.out.println("Vælg en mulighed ved at taste et tal fra 1-5\n" +
                     "1. Vis menukortet\n2. Vis ordreliste\n3. Tilføj ordre\n4. Færdiggør ordre" +
-                    "\n5. Vis historik\n6. Luk programmet");
+                    "\n5. Vis historik\n6. vis statistik\n7. Luk programmet");
             try {
                 int input = Integer.parseInt(scanner.nextLine());
 
@@ -56,6 +57,9 @@ public class PizzabarUI {
                         showHistory();
                         break;
                     case 6:
+                        System.out.println(Stats(fileHandler.getPizzaHistory()));
+                        break;
+                    case 7:
                         scanner.close();
                         running = false;
                         break;

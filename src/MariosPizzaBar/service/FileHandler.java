@@ -18,6 +18,10 @@ public class FileHandler {
         return pizzaMenu;
     }
 
+    public ArrayList<Order> getPizzaHistory() {
+        return pizzaHistory;
+    }
+
     //Tilføje en ordre til ArrayList og CSV filen
     public void addOrder(Order order) {
         pizzaOrder.add(order);

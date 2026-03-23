@@ -6,6 +6,7 @@ import MariosPizzaBar.model.Order;
 
 public class Stats {
     public static int Stats(ArrayList<Order> orders) {
+        System.out.println("Påbegynder stats");
         int highestCount = 0;
         int mostBought = -1;
 
