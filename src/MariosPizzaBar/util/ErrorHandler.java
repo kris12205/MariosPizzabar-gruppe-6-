@@ -11,9 +11,6 @@ public class ErrorHandler {
         if (e instanceof IOException) {
             System.out.println("Fejl ved input/output");
 
-        } else if (e instanceof NumberFormatException) {
-            System.out.println("Forkert input, prøv igen");
-
         } else {
             System.out.println("Uventet fejl opstod");
         }
@@ -23,6 +20,9 @@ public class ErrorHandler {
     public static void handeInputErrors(Exception e) {
         if (e instanceof InputMismatchException) {
             System.out.println("Fejl, indtast gyldig værdi");
+
+        } else if (e instanceof NumberFormatException) {
+            System.out.println("Forkert input, prøv igen");
         }
     }
 
