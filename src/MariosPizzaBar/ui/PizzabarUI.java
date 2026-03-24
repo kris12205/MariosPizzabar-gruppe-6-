@@ -180,20 +180,21 @@ public class PizzabarUI {
 
     // fjerner order fra orders og tilføjer til Historik.csv
     private static void concludeOrder() {
-        showOrders(); // printer ordreliste som referencepunkt
-
-        System.out.println("Hvilke order vil du færdiggøre?");
-        int orderNumber = scanner.nextInt();
-        ArrayList<Order> updatedOrderList = fileHandler.removeOrder(orderNumber);
-        if (updatedOrderList == null) {
-            System.out.println("Denne ordre eksisterer ikke.");
+        if(orders.isEmpty()) {
+            System.out.println("Ordrelisten er tom.");
         } else {
-            System.out.println("Ordre nr." + orderNumber + " er færdiggjort.");
-        }
-        //fileHandler.removePizza(orderNumber);
+            showOrders(); //Printer ordreliste som referencepunkt
 
-        // skal kalde metode i FileHandler der tilføjer order til historik.csv og fjerne fra ArrayList
-        // fileHandler.concludeOrder(orderNumber);
+            System.out.println("Hvilke order vil du færdiggøre?");
+            int orderNumber = scanner.nextInt();
+            ArrayList<Order> updatedOrderList = fileHandler.removeOrder(orderNumber);
+
+            if (updatedOrderList == null) {
+                System.out.println("Denne ordre eksisterer ikke.");
+            } else {
+                System.out.println("Ordre nr." + orderNumber + " er færdiggjort.");
+            }
+        }
     }
 
     // skal læse og printe historik.csv
