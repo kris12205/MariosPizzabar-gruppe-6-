@@ -30,6 +30,11 @@ public class Order {
         return pizza;
     }
 
+    //Returnere pizzaens navn. Bruges i OrderSorter til at sortere ordrelisten.
+    public String getPizzaName() {
+        return pizza.getName();
+    }
+
     public String toCSV() {
         return orderNumber + "," + orderTime + "," + pizza;
     }

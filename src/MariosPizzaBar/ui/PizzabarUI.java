@@ -35,9 +35,9 @@ public class PizzabarUI {
         showOrders();
 
         while (running) {
-            System.out.println("\nVælg en mulighed ved at taste et tal fra 1-5\n" +
-                    "1. Vis menukortet\n2. Vis ordreliste\n3. Tilføj ordre\n4. Færdiggør ordre" +
-                    "\n5. Vis historik\n6. vis statistik\n7. Luk programmet");
+            System.out.println("\nVælg en mulighed ved at taste et tal fra 1-8\n" +
+                    "1. Vis menukortet\n2. Vis ordreliste\n3. Tilføj ordre\n4. Sorter ordrelisten\n5. Færdiggør ordre" +
+                    "\n6. Vis historik\n7. Vis statistik\n8. Luk programmet");
             try {
                 int input = Integer.parseInt(scanner.nextLine());
 
@@ -53,17 +53,20 @@ public class PizzabarUI {
                         scanner.nextLine();
                         break;
                     case 4:
-                        concludeOrder();
+                        sortOrderList(scanner);
                         scanner.nextLine();
                         break;
                     case 5:
-                        showHistory();
+                        concludeOrder();
+                        scanner.nextLine();
                         break;
                     case 6:
-                        System.out.print("Den mest populære pizza er: ");
-                        System.out.println(Stats(fileHandler.getPizzaHistory()));
+                        showHistory();
                         break;
                     case 7:
+                        System.out.println(Stats(fileHandler.getPizzaHistory()));
+                        break;
+                    case 8:
                         scanner.close();
                         running = false;
                         break;
@@ -90,7 +93,7 @@ public class PizzabarUI {
 
         // ArrayList<Order> orderList = fileHandler.loadOrderList();
 
-        OrderSorter.sortByTime(orders);
+        //OrderSorter.sortByTime(orders);
 
 
         if (orders.isEmpty()) {
@@ -161,6 +164,26 @@ public class PizzabarUI {
                 System.out.println("Ukendt input.");
         }
 
+    }
+
+    //Sorter ordrelisten
+    public static void sortOrderList(Scanner scan) {
+        System.out.println("Hvordan vil du sorter ordrelisten?\n1. Efter tid\n2. Alfabetisk\n3. Efter pizza navn");
+        int input = scan.nextInt();
+
+        switch (input) {
+            case 1:
+                OrderSorter.sortByTime(orders);
+                break;
+            case 2:
+                OrderSorter.sortByOrderNumber(orders);
+                break;
+            case 3:
+                OrderSorter.sortByOrderName(orders);
+                break;
+            default:
+                System.out.println("Ukendt input");
+        }
     }
 
     // fjerner order fra orders og tilføjer til Historik.csv

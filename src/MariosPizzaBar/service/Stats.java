@@ -6,7 +6,6 @@ import MariosPizzaBar.model.Order;
 
 public class Stats {
     public static String Stats(ArrayList<Order> orders) {
-        System.out.println("Påbegynder stats");
         int highestCount = 0;
         String mostBought = "Tom";
 
@@ -23,6 +22,6 @@ public class Stats {
                 mostBought = orders.get(i).getPizza().getName();
             }
         }
-        return mostBought;
+        return "Den mest populære pizza er: " + mostBought;
     }
 }
