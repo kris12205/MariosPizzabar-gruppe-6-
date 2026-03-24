@@ -177,12 +177,15 @@ public class PizzabarUI {
         switch (input) {
             case 1:
                 OrderSorter.sortByTime(orders);
+                System.out.println(orders);
                 break;
             case 2:
                 OrderSorter.sortByOrderNumber(orders);
+                System.out.println(orders);
                 break;
             case 3:
                 OrderSorter.sortByOrderName(orders);
+                System.out.println(orders);
                 break;
             default:
                 System.out.println("Ukendt input");
