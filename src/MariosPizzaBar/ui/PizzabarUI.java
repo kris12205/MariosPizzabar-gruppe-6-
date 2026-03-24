@@ -33,9 +33,9 @@ public class PizzabarUI {
         showOrders();
 
         while (running) {
-            System.out.println("\nVælg en mulighed ved at taste et tal fra 1-8\n" +
-                    "1. Vis menukortet\n2. Vis ordreliste\n3. Tilføj ordre\n4. Sorter ordrelisten\n5. Færdiggør ordre" +
-                    "\n6. Vis historik\n7. Vis statistik\n8. Luk programmet");
+            System.out.println("\nVælg en mulighed ved at taste et tal fra 1-9\n" +
+                    "1. Vis menukortet\n2. Vis drikkevare\n3. Vis ordreliste\n4. Tilføj ordre\n5. Sorter ordrelisten" +
+                    "\n6. Færdiggør ordre\n7. Vis historik\n8. Vis statistik\n9. Luk programmet");
             try {
                 int input = Integer.parseInt(scanner.nextLine());
 
@@ -44,27 +44,30 @@ public class PizzabarUI {
                         showMenu();
                         break;
                     case 2:
-                        showOrders();
+                        Drinks.printDrinks();
                         break;
                     case 3:
+                        showOrders();
+                        break;
+                    case 4:
                         addOrder(scanner);
                         scanner.nextLine();
                         break;
-                    case 4:
+                    case 5:
                         sortOrderList(scanner);
                         scanner.nextLine();
                         break;
-                    case 5:
+                    case 6:
                         concludeOrder();
                         scanner.nextLine();
                         break;
-                    case 6:
+                    case 7:
                         showHistory();
                         break;
-                    case 7:
+                    case 8:
                         showStats();
                         break;
-                    case 8:
+                    case 9:
                         scanner.close();
                         running = false;
                         break;
