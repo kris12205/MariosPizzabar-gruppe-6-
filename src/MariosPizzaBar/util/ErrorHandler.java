@@ -17,7 +17,7 @@ public class ErrorHandler {
     }
 
 
-    public static void handeInputErrors(Exception e) {
+    public static void handleInputErrors(Exception e) {
         if (e instanceof InputMismatchException) {
             System.out.println("Fejl, indtast gyldig værdi");
 

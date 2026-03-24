@@ -75,7 +75,7 @@ public class PizzabarUI {
                 }
             } catch (Exception e){
                ErrorHandler.handleErrors(e);
-               ErrorHandler.handeInputErrors(e);
+               ErrorHandler.handleInputErrors(e);
             }
         }
     }
