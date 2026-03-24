@@ -4,6 +4,7 @@ import MariosPizzaBar.model.Order;
 import MariosPizzaBar.model.Pizza;
 import MariosPizzaBar.model.Size;
 import MariosPizzaBar.service.FileHandler;
+import MariosPizzaBar.util.ErrorHandler;
 import MariosPizzaBar.util.OrderSorter;
 import MariosPizzaBar.model.*;
 
@@ -72,8 +73,12 @@ public class PizzabarUI {
                         System.out.println("fejl");
 
                 }
-            } catch (NumberFormatException e){
-                System.out.println(wrongInputMessage);
+            } catch (Exception e){
+               ErrorHandler.handleErrors(e);
+               ErrorHandler.handlefileErrors(e);
+               ErrorHandler.handeInputErrors(e);
+               ErrorHandler.handleNullException(e);
+               ErrorHandler.handleArrayException(e);
             }
         }
     }

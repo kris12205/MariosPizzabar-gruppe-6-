@@ -3,6 +3,7 @@ import MariosPizzaBar.model.*;
 import java.io.*;
 import java.util.AbstractList;
 import java.util.ArrayList;
+import MariosPizzaBar.util.ErrorHandler;
 
 public class FileHandler {
 
@@ -48,9 +49,11 @@ public class FileHandler {
             }
 
 
-        } catch (
-                IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            ErrorHandler.handleErrors(e);
+            ErrorHandler.handlefileErrors(e);
+            ErrorHandler.handeInputErrors(e);
+            ErrorHandler.handleArrayException(e);
         }
 
     }
@@ -77,10 +80,12 @@ public class FileHandler {
             }
 
 
-        } catch (
-                IOException e) {
-            e.printStackTrace();
-        } catch (ArrayIndexOutOfBoundsException e){
+        } catch (Exception e){
+            ErrorHandler.handleErrors(e);
+            ErrorHandler.handlefileErrors(e);
+            ErrorHandler.handeInputErrors(e);
+            ErrorHandler.handleArrayException(e);
+
         }
 
         return pizzaOrder;
@@ -108,9 +113,11 @@ public class FileHandler {
             reader.close();
 
 
-        } catch (
-                IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            ErrorHandler.handleErrors(e);
+            ErrorHandler.handlefileErrors(e);
+            ErrorHandler.handeInputErrors(e);
+            ErrorHandler.handleArrayException(e);
         }
         //Måske udregne statistikken her?
 
@@ -130,8 +137,12 @@ public class FileHandler {
 
             bufferedWriter.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            ErrorHandler.handleErrors(e);
+            ErrorHandler.handlefileErrors(e);
+            ErrorHandler.handeInputErrors(e);
+            ErrorHandler.handleNullException(e);
+            ErrorHandler.handleArrayException(e);
         }
 
     }
@@ -149,8 +160,12 @@ public class FileHandler {
 
             bufferedWriter.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            ErrorHandler.handleErrors(e);
+            ErrorHandler.handlefileErrors(e);
+            ErrorHandler.handeInputErrors(e);
+            ErrorHandler.handleNullException(e);
+            ErrorHandler.handleArrayException(e);
         }
 
     }
