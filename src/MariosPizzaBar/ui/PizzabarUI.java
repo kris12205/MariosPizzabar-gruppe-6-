@@ -19,7 +19,6 @@ public class PizzabarUI {
     private static Scanner scanner = new Scanner(System.in);
     private static ArrayList<Order> orders = new ArrayList<>();
     private static FileHandler fileHandler = new FileHandler();
-    private static String wrongInputMessage = "Forkert input. Tast venligst et tal mellem 1-6.";
 
     // skal kalde de andre metoder
     public static void start() {
@@ -70,15 +69,12 @@ public class PizzabarUI {
                         running = false;
                         break;
                     default:
-                        System.out.println("fejl");
+                        System.out.println("Uventet fejl. Tast et tal mellem 1-9.");
 
                 }
             } catch (Exception e){
                ErrorHandler.handleErrors(e);
-               ErrorHandler.handlefileErrors(e);
-               ErrorHandler.handeInputErrors(e);
-               ErrorHandler.handleNullException(e);
-               ErrorHandler.handleArrayException(e);
+               ErrorHandler.handleInputErrors(e);
             }
         }
     }
@@ -111,23 +107,35 @@ public class PizzabarUI {
     // tilføjer order til orders
     private static void addOrder(Scanner scanner) {
 
-        System.out.println("Pizzanummer?");
-        int pizzaNumber = scanner.nextInt();
-        Pizza newOrder = fileHandler.findPizza(pizzaNumber);
-        scanner.nextLine();
+        System.out.println("Hvor mange pizzaer vil du tilføje?");
 
-        System.out.println("Er størrelsen 'normal', 'kids' eller 'large'?");
-        Size size = null;
+        int pizzaAntal = Integer.parseInt(scanner.nextLine());
 
-        try {
-            size = Size.valueOf(scanner.nextLine().toUpperCase());
-        } catch (IllegalArgumentException e) {
-            System.out.println("Forkert input. Prøve igen.");
-            return;
-        }
+        for (int i = 0; i < pizzaAntal; i++) {
+            System.out.println("\nPizza #" + (i + 1));
 
-        fileHandler.addOrder(new Order(newOrder, size));
-        addCustomer(newOrder);
+            System.out.println("Pizzanummer?");
+            int pizzaNumber = scanner.nextInt();
+            Pizza newOrder = fileHandler.findPizza(pizzaNumber);
+            scanner.nextLine();
+
+            System.out.println("Er størrelsen 'normal', 'kids' eller 'large'?");
+            Size size = null;
+
+            try {
+                size = Size.valueOf(scanner.nextLine().toUpperCase());
+            } catch (Exception e) {
+                ErrorHandler.handleErrors(e);
+                ErrorHandler.handleNullException(e);
+                ErrorHandler.handleInputErrors(e);
+                return;
+            }
+
+            fileHandler.addOrder(new Order(newOrder, size));
+            addCustomer(newOrder);
+            System.out.println("\nPizza #" + (i + 1) + "er tilføjet");
+
+    }
 
     }
 
@@ -156,7 +164,7 @@ public class PizzabarUI {
                 System.out.println("Ukendt input.");
         }
 
-    }
+        }
 
     //Sorter ordrelisten
     public static void sortOrderList(Scanner scan) {

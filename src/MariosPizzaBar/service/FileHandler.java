@@ -52,7 +52,6 @@ public class FileHandler {
         } catch (Exception e) {
             ErrorHandler.handleErrors(e);
             ErrorHandler.handlefileErrors(e);
-            ErrorHandler.handeInputErrors(e);
             ErrorHandler.handleArrayException(e);
         }
 
@@ -83,7 +82,7 @@ public class FileHandler {
         } catch (Exception e){
             ErrorHandler.handleArrayException(e);
             ErrorHandler.handlefileErrors(e);
-            ErrorHandler.handeInputErrors(e);
+            ErrorHandler.handleInputErrors(e);
         }
 
         return pizzaOrder;
@@ -114,7 +113,6 @@ public class FileHandler {
         } catch (Exception e) {
             ErrorHandler.handleErrors(e);
             ErrorHandler.handlefileErrors(e);
-            ErrorHandler.handeInputErrors(e);
             ErrorHandler.handleArrayException(e);
         }
         //Måske udregne statistikken her?
@@ -138,8 +136,6 @@ public class FileHandler {
         } catch (Exception e) {
             ErrorHandler.handleErrors(e);
             ErrorHandler.handlefileErrors(e);
-            ErrorHandler.handeInputErrors(e);
-            ErrorHandler.handleNullException(e);
             ErrorHandler.handleArrayException(e);
         }
 
@@ -161,8 +157,6 @@ public class FileHandler {
         } catch (Exception e) {
             ErrorHandler.handleErrors(e);
             ErrorHandler.handlefileErrors(e);
-            ErrorHandler.handeInputErrors(e);
-            ErrorHandler.handleNullException(e);
             ErrorHandler.handleArrayException(e);
         }
 
