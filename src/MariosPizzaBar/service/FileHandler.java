@@ -81,11 +81,9 @@ public class FileHandler {
 
 
         } catch (Exception e){
-            ErrorHandler.handleErrors(e);
+            ErrorHandler.handleArrayException(e);
             ErrorHandler.handlefileErrors(e);
             ErrorHandler.handeInputErrors(e);
-            ErrorHandler.handleArrayException(e);
-
         }
 
         return pizzaOrder;
