@@ -23,6 +23,9 @@ public class ErrorHandler {
 
         } else if (e instanceof NumberFormatException) {
             System.out.println("Forkert input, prøv igen");
+
+        } else if (e instanceof IllegalArgumentException) {
+            System.out.println("forkert input");
         }
     }
 
