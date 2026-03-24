@@ -62,7 +62,7 @@ public class PizzabarUI {
                         showHistory();
                         break;
                     case 7:
-                        System.out.println(Stats(fileHandler.getPizzaHistory()));
+                        showStats();
                         break;
                     case 8:
                         scanner.close();
@@ -88,11 +88,6 @@ public class PizzabarUI {
     // skal printe orders
     public static void showOrders() {
         String allOrders = "";
-
-        // ArrayList<Order> orderList = fileHandler.loadOrderList();
-
-        //OrderSorter.sortByTime(orders);
-
 
         if (orders.isEmpty()) {
 
@@ -198,6 +193,21 @@ public class PizzabarUI {
 
     // skal læse og printe historik.csv
     private static void showHistory() {
-        fileHandler.showHistory();
+        if(fileHandler.getPizzaHistory().isEmpty()) {
+            System.out.println("Historikken er tom");
+        } else {
+            fileHandler.showHistory();
+        }
+
+    }
+
+    //Kalder stats metode
+    private static void showStats() {
+        if(fileHandler.getPizzaHistory().isEmpty()) {
+            System.out.println("Historikken er tom");
+        } else {
+            System.out.println(Stats(fileHandler.getPizzaHistory()));
+        }
+
     }
 }
