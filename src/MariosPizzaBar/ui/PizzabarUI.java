@@ -188,19 +188,25 @@ public class PizzabarUI {
 
     // fjerner order fra orders og tilføjer til Historik.csv
     private static void concludeOrder() {
-        if(orders.isEmpty()) {
-            System.out.println("Ordrelisten er tom.");
-        } else {
-            showOrders(); //Printer ordreliste som referencepunkt
+        System.out.println("Hvor mange ordrer vil du færdiggøre?");
 
-            System.out.println("Hvilke order vil du færdiggøre?");
-            int orderNumber = scanner.nextInt();
-            ArrayList<Order> updatedOrderList = fileHandler.removeOrder(orderNumber);
+        int pizzaAntal = Integer.parseInt(scanner.nextLine());
 
-            if (updatedOrderList == null) {
-                System.out.println("Denne ordre eksisterer ikke.");
+        for (int i = 0; i < pizzaAntal; i++) {
+            if (orders.isEmpty()) {
+                System.out.println("Ordrelisten er tom.");
             } else {
-                System.out.println("Ordre nr." + orderNumber + " er færdiggjort.");
+                showOrders(); //Printer ordreliste som referencepunkt
+
+                System.out.println("Hvilke order vil du færdiggøre?");
+                int orderNumber = scanner.nextInt();
+                ArrayList<Order> updatedOrderList = fileHandler.removeOrder(orderNumber);
+
+                if (updatedOrderList == null) {
+                    System.out.println("Denne ordre eksisterer ikke.");
+                } else {
+                    System.out.println("Ordre nr." + orderNumber + " er færdiggjort.");
+                }
             }
         }
     }
