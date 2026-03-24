@@ -24,8 +24,6 @@ public class PizzabarUI {
     public static void start() {
         System.out.println("Velkommen til Marios PizzaBar System!\n");
 
-
-
         boolean running = true;
 
         //Indlæser Pizza menuen
@@ -118,23 +116,17 @@ public class PizzabarUI {
         Pizza newOrder = fileHandler.findPizza(pizzaNumber);
         scanner.nextLine();
 
-//        System.out.println("Størrelse?");
-//        String answer = scanner.nextLine();
-//
-//        switch (answer.toLowerCase()) {
-//            case "normal": {
-//                Size size = NORMAL;
-//            }
-//            case "kids", "kid", "small": {
-//                Size size = KIDS;
-//            }
-//            case "family", "large": {
-//                Size size = FAMILY;
-//            }
-//            default: System.out.println("Forkert input. Prøv igen.");
-//        }
+        System.out.println("Er størrelsen 'normal', 'kids' eller 'large'?");
+        Size size = null;
 
-        fileHandler.addOrder(new Order(newOrder));
+        try {
+            size = Size.valueOf(scanner.nextLine().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Forkert input. Prøve igen.");
+            return;
+        }
+
+        fileHandler.addOrder(new Order(newOrder, size));
         addCustomer(newOrder);
 
     }

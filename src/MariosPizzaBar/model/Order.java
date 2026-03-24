@@ -8,13 +8,15 @@ public class Order {
     private int orderNumber;
     private Pizza pizza;
     private Timestamp orderTime;
+    private Size size;
 
     //Constuctor
-    public Order (Pizza pizza){
+    public Order (Pizza pizza, Size size){
         orderCounter++;
         this.orderNumber = orderCounter;
         this.orderTime = new Timestamp(System.currentTimeMillis());
         this.pizza = pizza;
+        this.size = size;
     }
 
     //Getters
@@ -36,7 +38,7 @@ public class Order {
     }
 
     public String toCSV() {
-        return orderNumber + "," + orderTime + "," + pizza;
+        return orderNumber + "," + orderTime + "," + pizza + "," + size;
     }
 
 }
