@@ -69,8 +69,9 @@ public class FileHandler {
                 int number = Integer.parseInt(parts[2]);
                 String name = parts[3];
                 int price = Integer.parseInt(parts[4]);
+                Size size = Size.valueOf(parts[5]);
                 Pizza pizza = new Pizza(number, name, price);
-                Order order = new Order(pizza);
+                Order order = new Order(pizza, size);
 
                 pizzaOrder.add(order);
             }
