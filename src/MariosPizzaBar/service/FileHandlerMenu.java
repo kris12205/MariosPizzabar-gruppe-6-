@@ -46,6 +46,6 @@ public class FileHandlerMenu {
     }
 
     public Pizza findPizza(int pizzaNumber) {
-        return pizzaMenu.get(pizzaNumber);
+        return pizzaMenu.get(pizzaNumber - 1);
     }
 }
