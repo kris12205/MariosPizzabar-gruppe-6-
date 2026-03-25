@@ -136,7 +136,7 @@ public class PizzabarUI {
 
             fileHandler.addOrder(new Order(newOrder, size));
             addCustomer(newOrder);
-            System.out.println("\nPizza #" + (i + 1) + "er tilføjet");
+            System.out.println("\nPizza #" + (i + 1) + " er tilføjet");
 
     }
 
