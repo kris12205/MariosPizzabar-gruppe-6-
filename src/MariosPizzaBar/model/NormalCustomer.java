@@ -14,6 +14,6 @@ public class NormalCustomer extends Customer{
     //Denne kunde får ingen rabat og betaler fuldpris
     @Override
     public String discount(double price) {
-        return "Koster: " + price +"\nRabat: 0%\nPris: " + price;
+        return "Koster: " + price +" kr\nRabat: 0%\nPris: " + price + " kr";
     }
 }

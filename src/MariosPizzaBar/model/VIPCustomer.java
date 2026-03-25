@@ -18,6 +18,6 @@ public class VIPCustomer extends Customer{
         double savings = price * 0.10;
         double finalPrice = price - savings;
         //System.out.println(finalPrice);
-        return "Koster: " + price +"\nRabat: 10%\nPris: " + finalPrice;
+        return "Koster: " + price +" kr\nRabat: 10%\nPris: " + finalPrice + " kr";
     }
 }
