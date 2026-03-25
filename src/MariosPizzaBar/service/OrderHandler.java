@@ -34,7 +34,7 @@ public class OrderHandler {
                 allOrders = allOrders.concat(order.toCSV() + "\n");
 
             }
-            System.out.println(allOrders);
+            System.out.println(Color.YELLOW + "Bestillingsliste: \n" + allOrders + Color.RESET);
         }
     }
 
