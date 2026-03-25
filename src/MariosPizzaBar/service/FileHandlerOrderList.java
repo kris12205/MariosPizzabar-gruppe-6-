@@ -80,7 +80,7 @@ public class FileHandlerOrderList {
     public ArrayList<Order> removeOrder(int number) {
         for (int i = 0; i < pizzaOrder.size(); i++) {
             if(number == pizzaOrder.get(i).getOrderNumber()) {
-                handlerHistory.getPizzaHistory.add(pizzaOrder.get(i)); //Tilføjer ordren til historik ArrayList
+                handlerHistory.getPizzaHistory().add(pizzaOrder.get(i)); //Tilføjer ordren til historik ArrayList
                 handlerHistory.writeToFileHistory(); //Skriver historik ArrayListen til CSV filen
                 pizzaOrder.remove(i); //Fjerner ordren fra bestilling ArrayListen
                 writeToFileOrderList(); //Opdatere bestillings CSV filen.

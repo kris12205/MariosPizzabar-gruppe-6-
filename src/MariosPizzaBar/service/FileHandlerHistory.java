@@ -35,13 +35,12 @@ public class FileHandlerHistory {
             ErrorHandler.handlefileErrors(e);
             ErrorHandler.handleArrayException(e);
         }
-        //Måske udregne statistikken her?
-
 
     }
 
+
     //Går igennem historik ArrayListen og skriver den til historik CSV filen
-    public static void writeToFileHistory() { //Har fjernet at metoden tager imod en ordre
+    public void writeToFileHistory() { //Har fjernet at metoden tager imod en ordre
         try {
             FileWriter fileWriter = new FileWriter(HISTORIK);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -60,7 +59,5 @@ public class FileHandlerHistory {
         }
 
     }
-
-
 
 }

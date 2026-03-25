@@ -8,9 +8,10 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class FileHandlerMenu {
-    private static final String MENU = "src/MariosPizzaBar/pizzamenu.csv";
 
+    private static final String MENU = "src/MariosPizzaBar/pizzamenu.csv";
     private static ArrayList<Pizza> pizzaMenu = new ArrayList<>();
+
 
     public ArrayList<Pizza> getPizzas() {
         return pizzaMenu;
