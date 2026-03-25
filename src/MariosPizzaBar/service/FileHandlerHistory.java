@@ -7,7 +7,13 @@ import MariosPizzaBar.util.ErrorHandler;
 
 
 
+
 public class FileHandlerHistory {
+    // definerer farver i ANSI
+    private static String RED = "\u001B[31m";
+    private static String GREEN = "\u001B[32m";
+    private static String YELLOW = "\u001B[33m";
+    private static String RESET = "\u001B[0m";
 
     private static final String HISTORIK = "src/MariosPizzaBar/Historik.csv";
     private static ArrayList<Order> pizzaHistory = new ArrayList<>();
@@ -24,7 +30,7 @@ public class FileHandlerHistory {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+                System.out.println(GREEN + line + RESET);
 
             }
             reader.close();

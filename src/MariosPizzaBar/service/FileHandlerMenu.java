@@ -19,8 +19,7 @@ public class FileHandlerMenu {
 
     public void loadPizzaMenu() {
 
-        try (BufferedReader reader =
-                     new BufferedReader(new FileReader(MENU))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(MENU))) {
 
             String line;
 
