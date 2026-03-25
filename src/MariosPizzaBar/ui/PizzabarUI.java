@@ -94,8 +94,9 @@ public class PizzabarUI {
     // skal printe menukortet fra pizzamenu.csv
     public static void showMenu() {
         for (Pizza pizza : fileHandlerMenu.getPizzas()) {
-            System.out.print(Color.GREEN + pizza + "\n" + Color.RESET);
-            System.out.print(pizza.getNumber() + ". " + pizza.getName() + ": " + pizza.getDescription()+ "......... " + pizza.getPrice() + "kr" + "\n");
+            System.out.print(Color.GREEN + pizza.getNumber() + ". " + pizza.getName() + ": "
+                    + pizza.getDescription() + pizza.getPrice() + "kr" + "\n"+ Color.RESET);
+
         }
     }
 
