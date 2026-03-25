@@ -49,7 +49,7 @@ public class OrderHandler {
             Pizza newOrder = fileHandlerMenu.findPizza(pizzaNumber);
             scanner.nextLine();
 
-            System.out.println("Er størrelsen 'normal', 'kids' eller 'large'?");
+            System.out.println("Er størrelsen 'normal', 'kids' eller 'family'?");
             Size size = null;
 
             try {
@@ -63,7 +63,7 @@ public class OrderHandler {
 
             fileHandlerOrders.addOrder(new Order(newOrder, size));
             addCustomer(newOrder);
-            System.out.println("\nPizza #" + (i + 1) + "er tilføjet");
+            System.out.println("\nPizza #" + (i + 1) + " er tilføjet");
 
         }
 
