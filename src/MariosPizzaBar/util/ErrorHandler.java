@@ -6,7 +6,8 @@ import java.io.IOException;
 
 public class ErrorHandler {
 
-    //metode til at håndtere disse fejl
+    //metoder til at håndtere alle fejl, delt op i forskellige metoder alt efter hvilke errors der skal handles.
+
     public static void handleErrors(Exception e) {
         if (e instanceof IOException) {
             System.out.println("Fejl ved input/output");
