@@ -49,9 +49,8 @@ public class OrderHandler {
             System.out.println("\nPizza #" + (i + 1));
 
             System.out.println("Pizzanummer?");
-            int pizzaNumber = scanner.nextInt();
+            int pizzaNumber = Integer.parseInt(scanner.nextLine());
             Pizza newOrder = fileHandlerMenu.findPizza(pizzaNumber);
-            scanner.nextLine();
 
             System.out.println("Er størrelsen 'normal', 'kids' eller 'family'?");
             Size size = null;
@@ -75,9 +74,9 @@ public class OrderHandler {
     public static void addCustomer(Pizza pizza){
 
         System.out.println("Hvilken slags kunde bestiller?\n1. Normal \n2. VIP\n3. Medarbejder");
-        int input = scanner.nextInt();
+        int input = Integer.parseInt(scanner.nextLine());
         System.out.print("Indtast kundenummer: ");
-        int customerNumber = scanner.nextInt();
+        int customerNumber = Integer.parseInt(scanner.nextLine());
 
         //Udregner pris
         switch (input) {
