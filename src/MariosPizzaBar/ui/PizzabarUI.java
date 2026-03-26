@@ -5,7 +5,7 @@ import MariosPizzaBar.model.Pizza;
 import MariosPizzaBar.model.Size;
 import MariosPizzaBar.service.*;
 import MariosPizzaBar.util.ErrorHandler;
-import MariosPizzaBar.util.OrderSorter;
+import MariosPizzaBar.util.*;
 import MariosPizzaBar.model.*;
 
 import java.io.BufferedReader;
@@ -21,9 +21,15 @@ public class PizzabarUI {
     private static FileHandlerMenu fileHandlerMenu = new FileHandlerMenu();
     private static FileHandlerHistory fileHandlerHistory = new FileHandlerHistory();
 
+
+
     // skal kalde de andre metoder
     public static void start() {
-        System.out.println("Velkommen til Marios PizzaBar System!\n");
+
+        System.out.println(Color.GREEN + """
+        
+        Velkommen til Marios PizzaBar System!
+        -------------------------------------""" + Color.RESET);
 
         boolean running = true;
 
@@ -72,9 +78,10 @@ public class PizzabarUI {
                     case 9:
                         scanner.close();
                         running = false;
+                        System.out.println(Color.YELLOW + "Tak for nu." + Color.RESET);
                         break;
                     default:
-                        System.out.println("Uventet fejl. Tast et tal mellem 1-9.");
+                        System.out.println(Color.RED + "Uventet fejl. Tast et tal mellem 1-9." + Color.RESET);
 
                 }
             } catch (Exception e){
@@ -87,7 +94,9 @@ public class PizzabarUI {
     // skal printe menukortet fra pizzamenu.csv
     public static void showMenu() {
         for (Pizza pizza : fileHandlerMenu.getPizzas()) {
-            System.out.print(pizza + "\n");
+            System.out.print(Color.GREEN + pizza.getNumber() + ". " + pizza.getName() + ": "
+                    + pizza.getDescription() + pizza.getPrice() + "kr" + "\n"+ Color.RESET);
+
         }
     }
 
@@ -95,7 +104,7 @@ public class PizzabarUI {
     // skal læse og printe historik.csv
     private static void showHistory() {
         if(fileHandlerHistory.getPizzaHistory().isEmpty()) {
-            System.out.println("Historikken er tom");
+            System.out.println(Color.RED + "Historikken er tom" + Color.RESET);
         } else {
             fileHandlerHistory.showHistory();
         }
@@ -105,9 +114,9 @@ public class PizzabarUI {
     //Kalder stats metode
     private static void showStats() {
         if(fileHandlerHistory.getPizzaHistory().isEmpty()) {
-            System.out.println("Historikken er tom");
+            System.out.println(Color.RED + "Historikken er tom" + Color.RESET);
         } else {
-            System.out.println(Stats(fileHandlerHistory.getPizzaHistory()));
+            System.out.println(Color.YELLOW + Stats(fileHandlerHistory.getPizzaHistory()) + Color.RESET);
         }
 
     }

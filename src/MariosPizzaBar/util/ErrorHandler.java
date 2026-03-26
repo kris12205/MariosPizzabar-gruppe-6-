@@ -1,5 +1,7 @@
 package MariosPizzaBar.util;
+import MariosPizzaBar.util.Color;
 
+import java.sql.ResultSet;
 import java.util.InputMismatchException;
 import java.io.IOException;
 
@@ -10,30 +12,30 @@ public class ErrorHandler {
 
     public static void handleErrors(Exception e) {
         if (e instanceof IOException) {
-            System.out.println("Fejl ved input/output");
+            System.out.println(Color.RED + "Fejl ved input/output" + Color.RESET);
 
         } else {
-            System.out.println("Uventet fejl opstod");
+            System.out.println(Color.RED + "Uventet fejl opstod" + Color.RESET);
         }
     }
 
 
     public static void handleInputErrors(Exception e) {
         if (e instanceof InputMismatchException) {
-            System.out.println("Fejl, indtast gyldig værdi");
+            System.out.println(Color.RED + "Fejl, indtast gyldig værdi" + Color.RESET);
 
         } else if (e instanceof NumberFormatException) {
-            System.out.println("Forkert input, prøv igen");
+            System.out.println(Color.RED + "Forkert input, prøv igen" + Color.RESET);
 
         } else if (e instanceof IllegalArgumentException) {
-            System.out.println("forkert input");
+            System.out.println(Color.RED + "Forkert input" + Color.RESET);
         }
     }
 
 
     public static void handleNullException(Exception e) {
         if (e instanceof NullPointerException) {
-            System.out.println("Fejl, null værdi fundet");
+            System.out.println(Color.RED + "Fejl, null værdi fundet" + Color.RESET);
         }
     }
 
@@ -46,10 +48,10 @@ public class ErrorHandler {
     //metode til at håndtere file errors
     public static void handlefileErrors(Exception e) {
         if (e instanceof FileReadException) {
-            System.out.println("Fejl ved læsning af fil");
+            System.out.println(Color.RED + "Fejl ved læsning af fil" + Color.RESET);
 
         } else if (e instanceof FileWriteException) {
-            System.out.println("Fejl ved skrivning af fil");
+            System.out.println(Color.RED + "Fejl ved skrivning af fil" + Color.RESET);
         }
     }
 

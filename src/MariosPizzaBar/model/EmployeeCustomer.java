@@ -16,6 +16,6 @@ public class EmployeeCustomer extends Customer{
     public String discount(double price) {
         double savings = price * 0.20;
         double finalPrice = price - savings;
-        return "Koster: " + price +"\nRabat: 20%\nPris: " + finalPrice;
+        return "Koster: " + price +" kr\nRabat: 20%\nPris: " + finalPrice + " kr";
     }
 }

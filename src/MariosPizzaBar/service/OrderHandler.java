@@ -1,6 +1,7 @@
 package MariosPizzaBar.service;
 
 import MariosPizzaBar.model.*;
+import MariosPizzaBar.util.Color;
 import MariosPizzaBar.util.ErrorHandler;
 import MariosPizzaBar.util.OrderSorter;
 
@@ -13,6 +14,9 @@ public class OrderHandler {
     private static FileHandlerOrderList fileHandlerOrders = new FileHandlerOrderList();
     private static FileHandlerMenu fileHandlerMenu = new FileHandlerMenu();
 
+
+
+
     public static ArrayList<Order> getOrders(){
         return orders = fileHandlerOrders.loadOrderList();
     }
@@ -22,7 +26,7 @@ public class OrderHandler {
 
         if (orders.isEmpty()) {
 
-            System.out.println("Ordrelisten er tom.");
+            System.out.println(Color.RED + "Ordrelisten er tom." + Color.RESET);
 
         } else {
 
@@ -30,7 +34,7 @@ public class OrderHandler {
                 allOrders = allOrders.concat(order.toCSV() + "\n");
 
             }
-            System.out.println(allOrders);
+            System.out.println(Color.YELLOW + "Bestillingsliste: \n" + allOrders + Color.RESET);
         }
     }
 
@@ -49,7 +53,7 @@ public class OrderHandler {
             Pizza newOrder = fileHandlerMenu.findPizza(pizzaNumber);
             scanner.nextLine();
 
-            System.out.println("Er størrelsen 'normal', 'kids' eller 'large'?");
+            System.out.println("Er størrelsen 'normal', 'kids' eller 'family'?");
             Size size = null;
 
             try {
@@ -63,7 +67,7 @@ public class OrderHandler {
 
             fileHandlerOrders.addOrder(new Order(newOrder, size));
             addCustomer(newOrder);
-            System.out.println("\nPizza #" + (i + 1) + " er tilføjet");
+            System.out.println(Color.YELLOW + "\nPizza # " + (i + 1) + "er tilføjet" + Color.RESET);
 
         }
 
@@ -90,7 +94,7 @@ public class OrderHandler {
                 System.out.println(ec.discount(pizza.getPrice()));
                 break;
             default:
-                System.out.println("Ukendt input.");
+                System.out.println(Color.RED + "Ukendt input." + Color.RESET);
         }
 
     }
@@ -102,7 +106,7 @@ public class OrderHandler {
 
         for (int i = 0; i < pizzaAntal; i++) {
             if (orders.isEmpty()) {
-                System.out.println("Ordrelisten er tom.");
+                System.out.println(Color.RED + "Ordrelisten er tom." + Color.RESET);
             } else {
                 showOrders(); //Printer ordreliste som referencepunkt
 
@@ -111,9 +115,9 @@ public class OrderHandler {
                 ArrayList<Order> updatedOrderList = fileHandlerOrders.removeOrder(orderNumber);
 
                 if (updatedOrderList == null) {
-                    System.out.println("Denne ordre eksisterer ikke.");
+                    System.out.println(Color.RED + "Denne ordre eksisterer ikke." + Color.RESET);
                 } else {
-                    System.out.println("Ordre nr." + orderNumber + " er færdiggjort.");
+                    System.out.println(Color.YELLOW + "Ordre nr." + orderNumber + " er færdiggjort." + Color.RESET);
                 }
             }
         }
@@ -138,7 +142,7 @@ public class OrderHandler {
                 showOrders();
                 break;
             default:
-                System.out.println("Ukendt input");
+                System.out.println(Color.RED + "Ukendt input" + Color.RESET);
         }
     }
 

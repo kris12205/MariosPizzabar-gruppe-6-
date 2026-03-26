@@ -12,15 +12,13 @@ public class FileHandlerMenu {
     private static final String MENU = "src/MariosPizzaBar/pizzamenu.csv";
     private static ArrayList<Pizza> pizzaMenu = new ArrayList<>();
 
-
     public ArrayList<Pizza> getPizzas() {
         return pizzaMenu;
     }
 
     public void loadPizzaMenu() {
 
-        try (BufferedReader reader =
-                     new BufferedReader(new FileReader(MENU))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(MENU))) {
 
             String line;
 
@@ -31,7 +29,8 @@ public class FileHandlerMenu {
                 int number = Integer.parseInt(parts[0]);
                 String name = parts[1];
                 int price = Integer.parseInt(parts[2]);
-                Pizza pizza = new Pizza(number, name, price);
+                String description = parts[3];
+                Pizza pizza = new Pizza(number, name, price, description);
 
                 pizzaMenu.add(pizza);
             }
