@@ -63,7 +63,7 @@ public class OrderHandler {
 
             fileHandlerOrders.addOrder(new Order(newOrder, size));
             addCustomer(newOrder);
-            System.out.println("\nPizza #" + (i + 1) + "er tilføjet");
+            System.out.println("\nPizza #" + (i + 1) + " er tilføjet");
 
         }
 
@@ -97,7 +97,6 @@ public class OrderHandler {
 
     // fjerner order fra orders og tilføjer til Historik.csv
     public static void concludeOrder() {
-        System.out.println("Hvor mange ordrer vil du færdiggøre?");
 
         int pizzaAntal = Integer.parseInt(scanner.nextLine());
 
