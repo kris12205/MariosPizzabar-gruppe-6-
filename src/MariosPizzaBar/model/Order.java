@@ -10,13 +10,21 @@ public class Order {
     private Timestamp orderTime;
     private Size size;
 
-    //Constuctor
+    // Constuctor til skrivning til bestillingsliste.csv
     public Order (Pizza pizza, Size size){
         orderCounter++;
         this.orderNumber = orderCounter;
         this.orderTime = new Timestamp(System.currentTimeMillis());
         this.pizza = pizza;
         this.size = size;
+    }
+
+    // Constructor til læsning af bestillingsliste.csv
+    public Order(Pizza pizza, Size size, Timestamp timestamp, int orderNumber){
+        this.pizza = pizza;
+        this.size = size;
+        this.orderTime = timestamp;
+        this.orderNumber = orderNumber;
     }
 
     //Getters

@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.sql.Timestamp;
 
 public class FileHandlerOrderList {
 
@@ -56,12 +57,14 @@ public class FileHandlerOrderList {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
 
+                int orderNumber = Integer.parseInt(parts[0]);
+                Timestamp timestamp = Timestamp.valueOf(parts[1]);
                 int number = Integer.parseInt(parts[2]);
                 String name = parts[3];
                 int price = Integer.parseInt(parts[4]);
                 Size size = Size.valueOf(parts[5]);
                 Pizza pizza = new Pizza(number, name, price);
-                Order order = new Order(pizza, size);
+                Order order = new Order(pizza, size, timestamp, orderNumber);
 
                 pizzaOrder.add(order);
             }
