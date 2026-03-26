@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import MariosPizzaBar.util.ErrorHandler;
 
 
-
-
 public class FileHandlerHistory {
     // definerer farver i ANSI
     private static String RED = "\u001B[31m";

@@ -14,10 +14,8 @@ public class VIPCustomer extends Customer{
     //Denne kunde får 10% rabat på alle pizzaer
     @Override
     public String discount(double price) {
-        //System.out.println("Rabat: 10%");
         double savings = price * 0.10;
         double finalPrice = price - savings;
-        //System.out.println(finalPrice);
         return "Koster: " + price +" kr\nRabat: 10%\nPris: " + finalPrice + " kr";
     }
 }

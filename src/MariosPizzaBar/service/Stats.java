@@ -1,10 +1,10 @@
 package MariosPizzaBar.service;
 
 import java.util.ArrayList;
-import MariosPizzaBar.ui.PizzabarUI;
 import MariosPizzaBar.model.Order;
 
 public class Stats {
+    //Finder den mest populære pizza ud historikkens ArrayList
     public static String Stats(ArrayList<Order> orders) {
         int highestCount = 0;
         String mostBought = "Tom";
