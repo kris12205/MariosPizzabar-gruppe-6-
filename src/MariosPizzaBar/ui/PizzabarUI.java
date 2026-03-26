@@ -35,6 +35,7 @@ public class PizzabarUI {
 
         //Indlæser Pizza menuen
         fileHandlerMenu.loadPizzaMenu();
+        fileHandlerHistory.loadHistory();
 
         //Indlæser bestillingslisten
         getOrders();
@@ -81,11 +82,10 @@ public class PizzabarUI {
                         System.out.println(Color.YELLOW + "Tak for nu." + Color.RESET);
                         break;
                     default:
-                        System.out.println(Color.RED + "Uventet fejl. Tast et tal mellem 1-9." + Color.RESET);
+                        System.out.println(Color.RED + "Fejl. Tast et tal mellem 1-9." + Color.RESET);
 
                 }
             } catch (Exception e){
-               ErrorHandler.handleErrors(e);
                ErrorHandler.handleInputErrors(e);
             }
         }
