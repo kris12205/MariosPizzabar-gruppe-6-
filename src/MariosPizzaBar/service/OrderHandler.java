@@ -14,13 +14,11 @@ public class OrderHandler {
     private static FileHandlerOrderList fileHandlerOrders = new FileHandlerOrderList();
     private static FileHandlerMenu fileHandlerMenu = new FileHandlerMenu();
 
-
-
-
     public static ArrayList<Order> getOrders(){
         return orders = fileHandlerOrders.loadOrderList();
     }
 
+    //Går gennem ArrayListen af ordres og printer dem ud
     public static void showOrders() {
         String allOrders = "";
 
@@ -35,6 +33,30 @@ public class OrderHandler {
 
             }
             System.out.println(Color.YELLOW + "Bestillingsliste: \n" + allOrders + Color.RESET);
+        }
+    }
+
+    //Tjekker om inputtet er en Size
+    public static Size findSize(Scanner sc) {
+        Size size = null;
+        String input;
+
+        while(true) {
+            System.out.println("Er størrelsen 'normal', 'kids' eller 'family'?");
+
+            if (sc.hasNext()) {
+                input = sc.nextLine().toUpperCase();
+
+                for (Size s : Size.values()) {
+                    if (s.name().equalsIgnoreCase(input)) {
+                        size = Size.valueOf(input);
+                        return size;
+                    }
+                }
+            } else {
+                System.out.println("Ukendt input");
+            }
+
         }
     }
 
@@ -53,11 +75,10 @@ public class OrderHandler {
             Pizza newOrder = fileHandlerMenu.findPizza(pizzaNumber);
             scanner.nextLine();
 
-            System.out.println("Er størrelsen 'normal', 'kids' eller 'family'?");
             Size size = null;
 
             try {
-                size = Size.valueOf(scanner.nextLine().toUpperCase());
+                size = findSize(scanner);
             } catch (Exception e) {
                 ErrorHandler.handleErrors(e);
                 ErrorHandler.handleNullException(e);
@@ -67,34 +88,54 @@ public class OrderHandler {
 
             fileHandlerOrders.addOrder(new Order(newOrder, size));
             addCustomer(newOrder);
-            System.out.println(Color.YELLOW + "\nPizza # " + (i + 1) + "er tilføjet" + Color.RESET);
+            System.out.println(Color.YELLOW + "\nPizza #" + (i + 1) + " er tilføjet" + Color.RESET);
 
         }
 
     }
     public static void addCustomer(Pizza pizza){
 
-        System.out.println("Hvilken slags kunde bestiller?\n1. Normal \n2. VIP\n3. Medarbejder");
-        int input = scanner.nextInt();
-        System.out.print("Indtast kundenummer: ");
-        int customerNumber = scanner.nextInt();
+        int customerNumber = 0;
 
-        //Udregner pris
-        switch (input) {
-            case 1:
-                NormalCustomer nc = new NormalCustomer(customerNumber);
-                System.out.println(nc.discount(pizza.getPrice()));
-                break;
-            case 2:
-                VIPCustomer vip = new VIPCustomer(customerNumber);
-                System.out.println(vip.discount(pizza.getPrice()));
-                break;
-            case 3:
-                EmployeeCustomer ec = new EmployeeCustomer(customerNumber);
-                System.out.println(ec.discount(pizza.getPrice()));
-                break;
-            default:
-                System.out.println(Color.RED + "Ukendt input." + Color.RESET);
+        while (true) {
+            System.out.println("Hvilken slags kunde bestiller?\n1. Normal \n2. VIP\n3. Medarbejder");
+
+            //Sørger for at inputtet er en int
+            if (scanner.hasNextInt()) {
+                customerNumber = scanner.nextInt();
+                scanner.nextLine();
+
+                //Sørger for at det er et tal mellem 1-3
+                if (customerNumber > 0 && customerNumber <= 3) {
+                    System.out.println("Indtast kundenummer: ");
+                    scanner.nextLine();
+
+                    //Udregner pris
+                    switch (customerNumber) {
+                        case 1:
+                            NormalCustomer nc = new NormalCustomer(customerNumber);
+                            System.out.println(nc.discount(pizza.getPrice()));
+                            break;
+                        case 2:
+                            VIPCustomer vip = new VIPCustomer(customerNumber);
+                            System.out.println(vip.discount(pizza.getPrice()));
+                            break;
+                        case 3:
+                            EmployeeCustomer ec = new EmployeeCustomer(customerNumber);
+                            System.out.println(ec.discount(pizza.getPrice()));
+                            break;
+                        default:
+                            System.out.println(Color.RED + "Ukendt input." + Color.RESET);
+                    }
+
+                    break;
+                }
+                else System.out.println("Indtast et tal mellem 1-3");
+            } else {
+                System.out.println("Forkerts input!");
+                scanner.nextLine();
+            }
+
         }
 
     }

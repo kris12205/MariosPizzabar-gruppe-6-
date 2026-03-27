@@ -1,26 +1,18 @@
 package MariosPizzaBar.ui;
 
-import MariosPizzaBar.model.Order;
-import MariosPizzaBar.model.Pizza;
-import MariosPizzaBar.model.Size;
 import MariosPizzaBar.service.*;
 import MariosPizzaBar.util.ErrorHandler;
 import MariosPizzaBar.util.*;
 import MariosPizzaBar.model.*;
-
-import java.io.BufferedReader;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
-import static MariosPizzaBar.model.Size.*;
-import static MariosPizzaBar.service.OrderHandler.*;
 import static MariosPizzaBar.service.Stats.Stats;
+
+import java.util.Scanner;
+
 
 public class PizzabarUI {
     private static Scanner scanner = new Scanner(System.in);
     private static FileHandlerMenu fileHandlerMenu = new FileHandlerMenu();
     private static FileHandlerHistory fileHandlerHistory = new FileHandlerHistory();
-
 
 
     // skal kalde de andre metoder
@@ -37,8 +29,8 @@ public class PizzabarUI {
         fileHandlerMenu.loadPizzaMenu();
 
         //Indlæser bestillingslisten
-        getOrders();
-        showOrders();
+        OrderHandler.getOrders();
+        OrderHandler.showOrders();
 
         while (running) {
             System.out.println("\nVælg en mulighed ved at taste et tal fra 1-9\n" +
@@ -55,18 +47,18 @@ public class PizzabarUI {
                         Drinks.printDrinks();
                         break;
                     case 3:
-                        showOrders();
+                        OrderHandler.showOrders();
                         break;
                     case 4:
-                        addOrder();
-                        // scanner.nextLine();
+                        OrderHandler.addOrder();
+                        scanner.nextLine();
                         break;
                     case 5:
-                        sortOrderList(scanner);
+                        OrderHandler.sortOrderList(scanner);
                         scanner.nextLine();
                         break;
                     case 6:
-                        concludeOrder();
+                        OrderHandler.concludeOrder();
                         // scanner.nextLine();
                         break;
                     case 7:
@@ -108,7 +100,6 @@ public class PizzabarUI {
         } else {
             fileHandlerHistory.showHistory();
         }
-
     }
 
     //Kalder stats metode
@@ -118,6 +109,5 @@ public class PizzabarUI {
         } else {
             System.out.println(Color.YELLOW + Stats(fileHandlerHistory.getPizzaHistory()) + Color.RESET);
         }
-
     }
 }
