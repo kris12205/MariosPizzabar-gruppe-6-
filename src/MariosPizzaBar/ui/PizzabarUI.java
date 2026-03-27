@@ -52,11 +52,11 @@ public class PizzabarUI {
                         break;
                     case 4:
                         OrderHandler.addOrder();
-                        scanner.nextLine();
+                        // scanner.nextLine();
                         break;
                     case 5:
-                        OrderHandler.sortOrderList(scanner);
-                        scanner.nextLine();
+                        OrderHandler.sortOrderList();
+                        // scanner.nextLine();
                         break;
                     case 6:
                         OrderHandler.concludeOrder();
