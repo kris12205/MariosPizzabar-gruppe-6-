@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import MariosPizzaBar.util.ErrorHandler;
 
 
+
+
 public class FileHandlerHistory {
     // definerer farver i ANSI
     private static String RED = "\u001B[31m";
@@ -40,6 +42,32 @@ public class FileHandlerHistory {
             ErrorHandler.handleArrayException(e);
         }
 
+    }
+
+     public void loadHistory() {
+
+       try (BufferedReader reader =
+                    new BufferedReader(new FileReader(HISTORIK))) {
+
+          String line;
+
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+
+                int number = Integer.parseInt(data[2]);
+                String name = data[3];
+                int price = Integer.parseInt(data[4]);
+                Size size = Size.valueOf(data[5]);
+                Pizza pizza = new Pizza(number, name, price);
+                Order order = new Order(pizza, size);
+                pizzaHistory.add(order);
+           }
+
+        } catch (Exception e){
+           ErrorHandler.handleArrayException(e);
+           ErrorHandler.handlefileErrors(e);
+           ErrorHandler.handleInputErrors(e);
+        }
     }
 
 

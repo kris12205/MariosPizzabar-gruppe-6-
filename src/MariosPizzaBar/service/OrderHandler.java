@@ -14,6 +14,9 @@ public class OrderHandler {
     private static FileHandlerOrderList fileHandlerOrders = new FileHandlerOrderList();
     private static FileHandlerMenu fileHandlerMenu = new FileHandlerMenu();
 
+
+
+
     public static ArrayList<Order> getOrders(){
         return orders = fileHandlerOrders.loadOrderList();
     }
@@ -71,7 +74,7 @@ public class OrderHandler {
             System.out.println("\nPizza #" + (i + 1));
 
             System.out.println("Pizzanummer?");
-            int pizzaNumber = scanner.nextInt();
+            int pizzaNumber = Integer.parseInt(scanner.nextLine());
             Pizza newOrder = fileHandlerMenu.findPizza(pizzaNumber);
             scanner.nextLine();
 
