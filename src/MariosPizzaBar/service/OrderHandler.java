@@ -76,7 +76,6 @@ public class OrderHandler {
             System.out.println("Pizzanummer?");
             int pizzaNumber = Integer.parseInt(scanner.nextLine());
             Pizza newOrder = fileHandlerMenu.findPizza(pizzaNumber);
-            scanner.nextLine();
 
             Size size = null;
 
@@ -105,13 +104,11 @@ public class OrderHandler {
 
             //Sørger for at inputtet er en int
             if (scanner.hasNextInt()) {
-                customerNumber = scanner.nextInt();
-                scanner.nextLine();
+                customerNumber = Integer.parseInt(scanner.nextLine());
 
                 //Sørger for at det er et tal mellem 1-3
                 if (customerNumber > 0 && customerNumber <= 3) {
                     System.out.println("Indtast kundenummer: ");
-                    scanner.nextLine();
 
                     //Udregner pris
                     switch (customerNumber) {
@@ -136,7 +133,6 @@ public class OrderHandler {
                 else System.out.println("Indtast et tal mellem 1-3");
             } else {
                 System.out.println("Forkerts input!");
-                scanner.nextLine();
             }
 
         }
@@ -155,7 +151,7 @@ public class OrderHandler {
                 showOrders(); //Printer ordreliste som referencepunkt
 
                 System.out.println("Hvilke order vil du færdiggøre?");
-                int orderNumber = scanner.nextInt();
+                int orderNumber = Integer.parseInt(scanner.nextLine());
                 ArrayList<Order> updatedOrderList = fileHandlerOrders.removeOrder(orderNumber);
 
                 if (updatedOrderList == null) {
@@ -168,9 +164,9 @@ public class OrderHandler {
     }
 
     //Sorter ordrelisten
-    public static void sortOrderList(Scanner scan) {
+    public static void sortOrderList() {
         System.out.println("Hvordan vil du sorter ordrelisten?\n1. Efter tid\n2. Alfabetisk\n3. Efter pizza navn");
-        int input = scan.nextInt();
+        int input = Integer.parseInt(scanner.nextLine());
 
         switch (input) {
             case 1:
