@@ -141,7 +141,9 @@ public class OrderHandler {
 
     // fjerner order fra orders og tilføjer til Historik.csv
     public static void concludeOrder() {
+        System.out.println("Conclude order begyndt");
 
+        System.out.println("Hvor mange ordre vil du færdiggøre?");
         int pizzaAntal = Integer.parseInt(scanner.nextLine());
 
         for (int i = 0; i < pizzaAntal; i++) {
