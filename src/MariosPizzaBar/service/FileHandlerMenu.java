@@ -16,6 +16,7 @@ public class FileHandlerMenu {
         return pizzaMenu;
     }
 
+    //Læser menu filen, gemmer dens værdier, som en pizza og tilføjer dem til en ArrayList
     public void loadPizzaMenu() {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(MENU))) {
@@ -44,6 +45,7 @@ public class FileHandlerMenu {
 
     }
 
+    //Får et nummer og returner det nummer fra pizza menuen
     public Pizza findPizza(int pizzaNumber) {
         return pizzaMenu.get(pizzaNumber - 1);
     }

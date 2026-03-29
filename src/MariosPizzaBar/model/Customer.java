@@ -10,7 +10,7 @@ public abstract class Customer {
     }
 
     //Getter
-    public int getCustomerNumer() {
+    public int getCustomerNumber() {
         return customerNumber;
     }
 

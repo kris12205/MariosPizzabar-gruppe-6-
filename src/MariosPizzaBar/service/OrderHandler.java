@@ -15,8 +15,6 @@ public class OrderHandler {
     private static FileHandlerMenu fileHandlerMenu = new FileHandlerMenu();
 
 
-
-
     public static ArrayList<Order> getOrders(){
         return orders = fileHandlerOrders.loadOrderList();
     }

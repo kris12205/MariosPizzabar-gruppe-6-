@@ -19,6 +19,7 @@ public class FileHandlerHistory {
         return pizzaHistory;
     }
 
+    //Læser historik filen og printer den ud
     public void showHistory() {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(HISTORIK))) {
@@ -31,7 +32,6 @@ public class FileHandlerHistory {
             }
             reader.close();
 
-
         } catch (Exception e) {
             ErrorHandler.handleErrors(e);
             ErrorHandler.handlefileErrors(e);
@@ -40,6 +40,7 @@ public class FileHandlerHistory {
 
     }
 
+    //Læser historik filen, gemmer dens værdier som en pizza og ordre og tilføjer ordren til en ArrayList
      public void loadHistory() {
 
        try (BufferedReader reader =

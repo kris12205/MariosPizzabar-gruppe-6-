@@ -19,7 +19,7 @@ public class Order {
         this.size = size;
     }
 
-    // Constructor til læsning af bestillingsliste.csv
+    // Constructor der bruger alle attributterne
     public Order(Pizza pizza, Size size, Timestamp timestamp, int orderNumber){
         this.pizza = pizza;
         this.size = size;

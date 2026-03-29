@@ -14,7 +14,7 @@ public class Pizza {
         this.price = price;
     }
 
-    // Coonstructor til showPizza
+    // Constructor til showPizza
     public Pizza(int number, String name, int price, String description){
         this.number = number;
         this.name = name;
