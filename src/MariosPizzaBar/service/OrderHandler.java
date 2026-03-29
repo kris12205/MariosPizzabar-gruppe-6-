@@ -109,6 +109,7 @@ public class OrderHandler {
                 //Sørger for at det er et tal mellem 1-3
                 if (customerNumber > 0 && customerNumber <= 3) {
                     System.out.println("Indtast kundenummer: ");
+                    scanner.nextLine();
 
                     //Udregner pris
                     switch (customerNumber) {
